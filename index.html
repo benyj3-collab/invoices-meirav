@@ -4,13 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="מירב">
 <meta name="theme-color" content="#6c3eb8">
-<title>חשבוניות מירב</title>
+<meta name="mobile-web-app-capable" content="yes">
+<title>מירב חשבוניות</title>
 
-<!-- PWA ICON: SVG inline as link -->
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='115' fill='%236c3eb8'/%3E%3Crect x='60' y='60' width='392' height='392' rx='80' fill='%23ffffff' opacity='0.12'/%3E%3Ctext x='256' y='320' font-family='Arial Rounded MT Bold,Arial,sans-serif' font-size='200' font-weight='900' text-anchor='middle' fill='white'%3E%D7%9E%3C/text%3E%3Ctext x='256' y='430' font-family='Arial Rounded MT Bold,Arial,sans-serif' font-size='68' font-weight='700' text-anchor='middle' fill='rgba(255,255,255,0.85)'%3E%D7%9E%D7%99%D7%A8%D7%91%3C/text%3E%3C/svg%3E">
+<!-- INLINE MANIFEST for Android PWA -->
+<link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22%D7%9E%D7%99%D7%A8%D7%91%20%D7%97%D7%A9%D7%91%D7%95%D7%A0%D7%99%D7%95%D7%AA%22%2C%22short_name%22%3A%22%D7%9E%D7%99%D7%A8%D7%91%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%236c3eb8%22%2C%22theme_color%22%3A%22%236c3eb8%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk%2BM9QDwADhgGAWjR9awAAAABJRU5ErkJggg%3D%3D%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D">
+
+<!-- iOS icon -->
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='115' fill='%236c3eb8'/%3E%3Ctext x='256' y='310' font-family='Arial Rounded MT Bold,Arial,sans-serif' font-size='230' font-weight='900' text-anchor='middle' fill='white'%3E%D7%9E%3C/text%3E%3Ctext x='256' y='420' font-family='Arial Rounded MT Bold,Arial,sans-serif' font-size='72' font-weight='700' text-anchor='middle' fill='rgba(255,255,255,0.9)'%3E%D7%9E%D7%99%D7%A8%D7%91%3C/text%3E%3C/svg%3E">
 
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&family=Rubik:wght@700;900&display=swap" rel="stylesheet">
 
@@ -515,7 +519,7 @@ var UK="inv_url5", SK="inv_sups5";
 var SCRIPT_URL = localStorage.getItem(UK) || "";
 var sups = JSON.parse(localStorage.getItem(SK)||"[]");
 var pages=[], payMode="", ttm;
-var MAX_PX=1200, QUALITY=0.72;
+var MAX_PX=900, QUALITY=0.60;
 
 // iOS PWA hint
 (function(){
@@ -524,7 +528,45 @@ var MAX_PX=1200, QUALITY=0.72;
   if(isIos && !isInStandalone){
     document.getElementById('pwaHint').style.display='block';
   }
+  // Android PWA hint
+  var isAndroid=/android/i.test(navigator.userAgent);
+  if(isAndroid && !window.matchMedia('(display-mode: standalone)').matches){
+    document.getElementById('pwaHint').style.display='block';
+    document.getElementById('pwaHint').innerHTML='📲 הוסף לסרגל הבית — לחץ על ⋮ תפריט ← <strong>הוסף למסך הבית</strong><span style="display:block;font-size:11px;opacity:.8;margin-top:2px;">לחץ לסגירה</span>';
+  }
+  // Generate canvas icon for Android
+  generateIcon();
 })();
+
+function generateIcon(){
+  try{
+    var cv=document.createElement("canvas"); cv.width=192; cv.height=192;
+    var ctx=cv.getContext("2d");
+    // רקע סגול עם radius
+    ctx.beginPath();
+    ctx.roundRect(0,0,192,192,38);
+    var grd=ctx.createLinearGradient(0,0,192,192);
+    grd.addColorStop(0,"#6c3eb8"); grd.addColorStop(1,"#8b5cf6");
+    ctx.fillStyle=grd; ctx.fill();
+    // אות מ
+    ctx.fillStyle="#ffffff";
+    ctx.font="bold 110px 'Arial Rounded MT Bold', Arial, sans-serif";
+    ctx.textAlign="center"; ctx.textBaseline="middle";
+    ctx.fillText("מ",96,88);
+    // מירב
+    ctx.font="bold 36px 'Arial Rounded MT Bold', Arial, sans-serif";
+    ctx.fillStyle="rgba(255,255,255,0.9)";
+    ctx.fillText("מירב",96,152);
+    var url=cv.toDataURL("image/png");
+    // עדכן link
+    var lk=document.querySelector("link[rel='apple-touch-icon']");
+    if(lk) lk.href=url;
+    // הוסף android icon
+    var lk2=document.createElement("link");
+    lk2.rel="icon"; lk2.type="image/png"; lk2.sizes="192x192"; lk2.href=url;
+    document.head.appendChild(lk2);
+  }catch(e){}
+}
 
 window.addEventListener("DOMContentLoaded", function(){
   setToday();
@@ -565,32 +607,90 @@ function setSt(t,m){
   document.getElementById("sText").textContent=m;
 }
 
-/* ---- API ---- */
+/* ---- API — XHR + JSONP fallback ---- */
+var _cbIdx = 0;
+
 function apiGet(qs, cb, errCb){
-  fetch(SCRIPT_URL+"?"+qs)
-    .then(function(r){ return r.text(); })
-    .then(function(t){ try{ cb(JSON.parse(t)); }catch(e){ if(errCb) errCb(e); } })
-    .catch(errCb||function(){});
+  // נסה XHR קודם (עובד על Safari)
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", SCRIPT_URL + "?" + qs, true);
+  xhr.timeout = 20000;
+  xhr.onload = function(){
+    var t = xhr.responseText.trim();
+    if(t.charAt(0) === "{" || t.charAt(0) === "["){
+      try{ cb(JSON.parse(t)); return; }catch(e){}
+    }
+    // XHR נכשל — נסה JSONP
+    apiGetJsonp(qs, cb, errCb);
+  };
+  xhr.onerror   = function(){ apiGetJsonp(qs, cb, errCb); };
+  xhr.ontimeout = function(){ apiGetJsonp(qs, cb, errCb); };
+  xhr.send();
 }
 
-/* ---- תיקון אייפון: POST עם Content-Type text/plain;charset=utf-8 ---- */
+function apiGetJsonp(qs, cb, errCb){
+  var cbName = "__apicb" + (++_cbIdx);
+  var t = setTimeout(function(){
+    cleanup(cbName);
+    if(errCb) errCb(new Error("timeout"));
+  }, 20000);
+  window[cbName] = function(d){
+    clearTimeout(t); cleanup(cbName); cb(d);
+  };
+  var s = document.createElement("script");
+  s.src = SCRIPT_URL + "?" + qs + "&callback=" + cbName;
+  s.onerror = function(){
+    clearTimeout(t); cleanup(cbName);
+    if(errCb) errCb(new Error("script error"));
+  };
+  document.head.appendChild(s);
+}
+
+function cleanup(name){
+  delete window[name];
+  var old = document.querySelectorAll("script[src*='"+name+"']");
+  old.forEach(function(el){ el.parentNode && el.parentNode.removeChild(el); });
+}
+
+/* POST — XHR ראשי, fallback ל-JSONP */
 function apiPost(data, cb, errCb){
-  fetch(SCRIPT_URL, {
-    method: "POST",
-    headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: JSON.stringify(data)
-  })
-  .then(function(r){ return r.text(); })
-  .then(function(t){
-    t = t.trim();
-    // לפעמים Apps Script מחזיר HTML של שגיאה
-    if(t.charAt(0) !== "{" && t.charAt(0) !== "["){
-      if(errCb) errCb(new Error("Bad response: "+t.substring(0,120)));
-      return;
+  var body = JSON.stringify(data);
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", SCRIPT_URL, true);
+  xhr.setRequestHeader("Content-Type", "text/plain;charset=utf-8");
+  xhr.timeout = 60000;
+  xhr.onload = function(){
+    var t = (xhr.responseText||"").trim();
+    if(t.charAt(0) === "{" || t.charAt(0) === "["){
+      try{ cb(JSON.parse(t)); return; }catch(e){}
     }
-    try{ cb(JSON.parse(t)); }catch(e){ if(errCb) errCb(e); }
-  })
-  .catch(errCb||function(){});
+    // תשובה לא תקינה — fallback
+    if(data.pages && data.pages.length){
+      if(errCb) errCb(new Error("POST_BLOCKED"));
+    } else {
+      apiPostViaGet(data, cb, errCb);
+    }
+  };
+  xhr.onerror = function(){
+    if(data.pages && data.pages.length){
+      if(errCb) errCb(new Error("POST_BLOCKED"));
+    } else {
+      apiPostViaGet(data, cb, errCb);
+    }
+  };
+  xhr.ontimeout = function(){
+    if(errCb) errCb(new Error("timeout"));
+  };
+  xhr.send(body);
+}
+
+function apiPostViaGet(data, cb, errCb){
+  var qs = "action=" + encodeURIComponent(data.action||"");
+  if(data.supplier) qs += "&supplier=" + encodeURIComponent(data.supplier);
+  if(data.email)    qs += "&email="    + encodeURIComponent(data.email);
+  if(data.dateFrom) qs += "&dateFrom=" + encodeURIComponent(data.dateFrom);
+  if(data.dateTo)   qs += "&dateTo="   + encodeURIComponent(data.dateTo);
+  apiGet(qs, cb, errCb);
 }
 
 /* ---- Suppliers ---- */
@@ -729,10 +829,17 @@ function doSubmit(){
   };
   apiPost(pl, function(r){
     setLd(false);
-    if(r.success)      { toast("✅ נשמר ב-Drive!","ok"); reset(); }
+    if(r.success)       { toast("✅ נשמר ב-Drive!","ok"); reset(); }
     else if(r.duplicate){ document.getElementById("dupW").classList.add("show"); toast("כפילות — חשבונית זו קיימת!","warn"); }
-    else               { toast(r.error||"שגיאה","err"); }
-  }, function(e){ console.error(e); setLd(false); toast("שגיאת חיבור — בדוק Apps Script","err"); });
+    else                { toast(r.error||"שגיאה","err"); }
+  }, function(e){
+    setLd(false);
+    if(e && e.message === "POST_BLOCKED"){
+      toast("❌ Apps Script חוסם — בדוק הגדרות Deploy","err");
+    } else {
+      toast("❌ לא מחובר — בדוק URL בהגדרות","err");
+    }
+  });
 }
 function setLd(on){ var b=document.getElementById("subBtn"); b.classList.toggle("loading",on); b.disabled=on; }
 function reset(){
