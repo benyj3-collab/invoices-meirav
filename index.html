@@ -9,413 +9,435 @@
 <meta name="theme-color" content="#6c3eb8">
 <meta name="mobile-web-app-capable" content="yes">
 <title>מירב חשבוניות</title>
-
-<!-- INLINE MANIFEST for Android PWA -->
 <link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22%D7%9E%D7%99%D7%A8%D7%91%20%D7%97%D7%A9%D7%91%D7%95%D7%A0%D7%99%D7%95%D7%AA%22%2C%22short_name%22%3A%22%D7%9E%D7%99%D7%A8%D7%91%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%236c3eb8%22%2C%22theme_color%22%3A%22%236c3eb8%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk%2BM9QDwADhgGAWjR9awAAAABJRU5ErkJggg%3D%3D%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D">
-
-<!-- iOS icon -->
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='115' fill='%236c3eb8'/%3E%3Ctext x='256' y='310' font-family='Arial Rounded MT Bold,Arial,sans-serif' font-size='230' font-weight='900' text-anchor='middle' fill='white'%3E%D7%9E%3C/text%3E%3Ctext x='256' y='420' font-family='Arial Rounded MT Bold,Arial,sans-serif' font-size='72' font-weight='700' text-anchor='middle' fill='rgba(255,255,255,0.9)'%3E%D7%9E%D7%99%D7%A8%D7%91%3C/text%3E%3C/svg%3E">
-
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&family=Rubik:wght@700;900&display=swap" rel="stylesheet">
-
 <style>
 :root{
-  --bg:#f3eeff;
-  --bg2:#ece6ff;
-  --s1:#ffffff;
-  --s2:#f7f3ff;
-  --border:#ddd3f7;
-  --purple:#6c3eb8;
-  --purple2:#8b5cf6;
-  --purple3:#ede9fe;
-  --teal:#0d9488;
-  --teal2:#ccfbf1;
-  --coral:#e85d04;
-  --coral2:#fff0e6;
-  --gold:#d97706;
-  --gold2:#fef3c7;
-  --green:#16a34a;
-  --green2:#dcfce7;
-  --red:#dc2626;
-  --red2:#fee2e2;
-  --text:#1e1040;
-  --text2:#5b4b8a;
-  --text3:#9d8ec4;
+  --bg:#f3eeff;--s1:#fff;--s2:#f7f3ff;--border:#ddd3f7;
+  --purple:#6c3eb8;--purple2:#8b5cf6;--purple3:#ede9fe;
+  --teal:#0d9488;--teal2:#ccfbf1;
+  --coral:#e85d04;--coral2:#fff0e6;
+  --gold:#d97706;--gold2:#fef3c7;
+  --green:#16a34a;--green2:#dcfce7;
+  --red:#dc2626;--red2:#fee2e2;
+  --blue:#1d4ed8;--blue2:#dbeafe;
+  --text:#1e1040;--text2:#5b4b8a;--text3:#9d8ec4;
   --r:18px;--rs:12px;
   --shadow:0 2px 16px rgba(108,62,184,.10);
   --shadow2:0 6px 30px rgba(108,62,184,.18);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
-
-/* GRADIENT BG */
-body::before{
-  content:'';position:fixed;top:0;left:0;right:0;height:280px;
-  background:linear-gradient(145deg,#6c3eb8 0%,#8b5cf6 50%,#0d9488 100%);
-  z-index:0;border-radius:0 0 40px 40px;
-}
+body::before{content:'';position:fixed;top:0;left:0;right:0;height:260px;background:linear-gradient(145deg,#6c3eb8 0%,#8b5cf6 50%,#0d9488 100%);z-index:0;border-radius:0 0 40px 40px;}
 
 /* TAB BAR */
-.tab-bar{
-  position:fixed;bottom:0;left:0;right:0;
-  background:var(--s1);
-  border-top:none;
-  display:flex;z-index:50;
-  padding-bottom:env(safe-area-inset-bottom);
-  box-shadow:0 -4px 24px rgba(108,62,184,.13);
-  border-radius:24px 24px 0 0;
-}
-.tab{flex:1;padding:12px 4px 10px;text-align:center;font-size:9.5px;font-weight:700;color:var(--text3);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:color .2s;}
-.tab .ti{font-size:22px;transition:transform .2s;}
+.tab-bar{position:fixed;bottom:0;left:0;right:0;background:var(--s1);display:flex;z-index:50;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -4px 24px rgba(108,62,184,.13);border-radius:24px 24px 0 0;}
+.tab{flex:1;padding:10px 1px 8px;text-align:center;font-size:8px;font-weight:700;color:var(--text3);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color .2s;}
+.tab .ti{font-size:19px;transition:transform .2s;}
+.tab.active{color:var(--purple);}
+.tab.active .ti{transform:scale(1.15);}
+
+/* BULK PAYMENT PAGE */
+.inv-check-item{display:flex;align-items:flex-start;gap:10px;background:var(--s1);border:1.5px solid var(--border);border-radius:var(--rs);padding:12px;margin-bottom:8px;cursor:pointer;transition:all .15s;}
+.inv-check-item.selected{border-color:var(--purple);background:var(--purple3);}
+.inv-checkbox{width:22px;height:22px;border-radius:6px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;margin-top:2px;transition:all .15s;}
+.inv-check-item.selected .inv-checkbox{background:var(--purple);border-color:var(--purple);color:#fff;}
+.inv-check-info{flex:1;}
+.inv-check-sup{font-size:14px;font-weight:800;color:var(--text);}
+.inv-check-sub{font-size:11px;color:var(--text2);margin-top:2px;}
+.inv-check-amt{font-size:15px;font-weight:900;color:var(--purple);flex-shrink:0;}
+.pay-total-bar{background:linear-gradient(135deg,#6c3eb8,#8b5cf6);border-radius:var(--r);padding:14px 16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;}
+.pay-total-bar .pt-lbl{font-size:11px;color:rgba(255,255,255,.75);font-weight:700;}
+.pay-total-bar .pt-val{font-size:22px;font-weight:900;color:#fff;}
+.pay-total-bar .pt-cnt{font-size:12px;color:rgba(255,255,255,.85);}
+
+/* CREDIT CARD FIELDS */
+.cc-field{background:linear-gradient(135deg,#1e1040,#3d1f8a);border-radius:14px;padding:16px;margin-bottom:10px;}
+.cc-field .flabel{color:rgba(255,255,255,.75)!important;}
+.cc-field input{background:rgba(255,255,255,.15)!important;border:1px solid rgba(255,255,255,.3)!important;color:#fff!important;border-radius:9px!important;}
+.cc-field input::placeholder{color:rgba(255,255,255,.4)!important;}
+.tab .ti{font-size:20px;transition:transform .2s;}
 .tab.active{color:var(--purple);}
 .tab.active .ti{transform:scale(1.15);}
 
 /* PAGES */
-.page{display:none;padding-bottom:90px;position:relative;z-index:1;}
+.page{display:none;padding-bottom:88px;position:relative;z-index:1;}
 .page.active{display:block;}
 
 /* HEADER */
-.header{
-  padding:20px 18px 20px;
-  position:sticky;top:0;z-index:20;
-  background:transparent;
-}
-.hrow{display:flex;align-items:center;gap:12px;}
-.logo{
-  width:42px;height:42px;
-  background:rgba(255,255,255,.22);
-  border-radius:14px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:22px;flex-shrink:0;
-  backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,.3);
-}
-.header h1{font-size:20px;font-weight:900;color:#fff;font-family:'Rubik',sans-serif;letter-spacing:-.3px;}
-.spill{
-  margin-top:10px;display:inline-flex;align-items:center;gap:7px;
-  padding:6px 14px;background:rgba(255,255,255,.18);
-  border-radius:30px;font-size:11.5px;color:rgba(255,255,255,.95);
-  backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.2);
-}
+.header{padding:18px 16px 16px;position:sticky;top:0;z-index:20;background:transparent;}
+.hrow{display:flex;align-items:center;gap:10px;}
+.logo{width:40px;height:40px;background:rgba(255,255,255,.22);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);}
+.header h1{font-size:19px;font-weight:900;color:#fff;font-family:'Rubik',sans-serif;}
+.spill{margin-top:8px;display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:rgba(255,255,255,.18);border-radius:30px;font-size:11px;color:rgba(255,255,255,.95);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.2);}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;transition:background .3s;}
 .dot.ok{background:#6ee7b7;box-shadow:0 0 6px rgba(110,231,183,.6);}
 .dot.err{background:#fca5a5;}
 
 /* BODY */
-.body{padding:14px;max-width:500px;margin:0 auto;}
+.body{padding:12px;max-width:500px;margin:0 auto;}
 
 /* CARD */
-.card{
-  background:var(--s1);
-  border:1px solid var(--border);
-  border-radius:var(--r);
-  padding:18px;
-  margin-bottom:12px;
-  box-shadow:var(--shadow);
-}
-.clabel{
-  font-size:10px;font-weight:800;color:var(--text3);
-  text-transform:uppercase;letter-spacing:1.5px;
-  margin-bottom:14px;display:flex;align-items:center;gap:8px;
-}
+.card{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:10px;box-shadow:var(--shadow);}
+.card.teal{border-right:4px solid var(--teal);}
+.card.coral{border-right:4px solid var(--coral);}
+.card.gold{border-right:4px solid var(--gold);}
+.card.purple{border-right:4px solid var(--purple);}
+.card.green{border-right:4px solid var(--green);}
+.card.blue{border-right:4px solid var(--blue);}
+.clabel{font-size:10px;font-weight:800;color:var(--text3);text-transform:uppercase;letter-spacing:1.4px;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
 .clabel::after{content:'';flex:1;height:1px;background:var(--border);}
 
 /* INPUTS */
-select,input[type=text],input[type=date],input[type=email],input[type=number]{
-  width:100%;background:var(--s2);border:1.5px solid var(--border);border-radius:var(--rs);
-  padding:13px 15px;font-family:'Heebo',sans-serif;font-size:15px;color:var(--text);
-  appearance:none;-webkit-appearance:none;outline:none;
-  transition:border-color .15s,box-shadow .15s;direction:rtl;
-}
+select,input[type=text],input[type=date],input[type=email],input[type=number]{width:100%;background:var(--s2);border:1.5px solid var(--border);border-radius:var(--rs);padding:12px 14px;font-family:'Heebo',sans-serif;font-size:15px;color:var(--text);appearance:none;-webkit-appearance:none;outline:none;transition:border-color .15s,box-shadow .15s;direction:rtl;}
 select:focus,input:focus{border-color:var(--purple2);box-shadow:0 0 0 3px var(--purple3);}
 select option{background:#fff;}
-input[type=date]::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.5;}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
-.fcol{display:flex;flex-direction:column;gap:6px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;}
+.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px;}
+.fcol{display:flex;flex-direction:column;gap:5px;}
 .flabel{font-size:11px;color:var(--text2);font-weight:700;}
 .sw{position:relative;}
-.sa{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none;}
+.sa{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none;}
 
 /* DIGITS */
-input.digs{
-  letter-spacing:10px;font-size:26px;font-weight:900;text-align:center;
-  background:linear-gradient(135deg,#faf7ff,#fff);
-  border-color:var(--purple3);color:var(--purple);
-}
+input.digs{letter-spacing:10px;font-size:24px;font-weight:900;text-align:center;background:linear-gradient(135deg,#faf7ff,#fff);border-color:var(--purple3);color:var(--purple);}
 input.digs::placeholder{letter-spacing:2px;font-size:13px;font-weight:400;color:var(--text3);}
 
+/* INVOICE NUMBER BADGE */
+.inv-num{display:inline-flex;align-items:center;gap:6px;background:var(--purple3);color:var(--purple);font-size:12px;font-weight:800;padding:5px 12px;border-radius:20px;margin-bottom:10px;}
+
 /* ADD SUPPLIER */
-.ast{margin-top:10px;font-size:12px;color:var(--purple);cursor:pointer;text-align:center;font-weight:700;padding:6px;background:var(--purple3);border-radius:8px;}
-.asr{display:none;gap:8px;margin-top:8px;}
+.ast{margin-top:8px;font-size:12px;color:var(--purple);cursor:pointer;text-align:center;font-weight:700;padding:6px;background:var(--purple3);border-radius:8px;}
+.asr{display:none;gap:8px;margin-top:8px;flex-wrap:wrap;}
 .asr.open{display:flex;}
-.bsm{background:var(--purple);color:#fff;border:none;border-radius:var(--rs);padding:0 16px;font-family:'Heebo',sans-serif;font-size:13px;font-weight:800;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.bsm{background:var(--purple);color:#fff;border:none;border-radius:var(--rs);padding:0 14px;height:44px;font-family:'Heebo',sans-serif;font-size:13px;font-weight:800;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+
+/* CATEGORY CHIPS */
+.cats{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.cat{padding:6px 12px;background:var(--s2);border:1.5px solid var(--border);border-radius:20px;font-size:12px;font-weight:700;color:var(--text2);cursor:pointer;transition:all .15s;}
+.cat.active{background:var(--purple3);border-color:var(--purple);color:var(--purple);}
 
 /* PAYMENT TABS */
-.popts{display:flex;gap:7px;margin-bottom:14px;}
-.popt{flex:1;padding:10px 2px;text-align:center;background:var(--s2);border:1.5px solid var(--border);border-radius:var(--rs);font-size:12px;font-weight:700;color:var(--text2);cursor:pointer;transition:all .15s;}
+.popts{display:flex;gap:6px;margin-bottom:12px;}
+.popt{flex:1;padding:9px 2px;text-align:center;background:var(--s2);border:1.5px solid var(--border);border-radius:var(--rs);font-size:11px;font-weight:700;color:var(--text2);cursor:pointer;transition:all .15s;}
 .popt.active{border-color:var(--purple);color:var(--purple);background:var(--purple3);}
 .pf{display:none;}.pf.open{display:block;}
-.pay-title{font-size:12px;font-weight:800;color:var(--purple);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+.pay-title{font-size:12px;font-weight:800;color:var(--purple);margin-bottom:7px;padding-bottom:5px;border-bottom:1px solid var(--border);}
 
-/* PAGES */
-.plist{display:flex;flex-direction:column;gap:8px;margin-bottom:12px;}
-.pitem{display:flex;align-items:center;gap:11px;background:var(--s2);border:1px solid var(--border);border-radius:var(--rs);padding:10px 12px;}
-.pthumb{width:44px;height:44px;border-radius:9px;object-fit:cover;flex-shrink:0;border:1px solid var(--border);}
+/* PAID STATUS */
+.paid-toggle{display:flex;gap:8px;margin-top:10px;}
+.ptog{flex:1;padding:10px;text-align:center;border-radius:var(--rs);font-size:13px;font-weight:800;cursor:pointer;border:2px solid var(--border);background:var(--s2);color:var(--text3);transition:all .15s;}
+.ptog.paid{border-color:var(--green);background:var(--green2);color:var(--green);}
+.ptog.unpaid{border-color:var(--red);background:var(--red2);color:var(--red);}
+.ptog.paid.active{background:var(--green);color:#fff;box-shadow:0 4px 12px rgba(22,163,74,.35);}
+.ptog.unpaid.active{background:var(--red);color:#fff;box-shadow:0 4px 12px rgba(220,38,38,.35);}
+
+/* PAGES/PHOTOS */
+.plist{display:flex;flex-direction:column;gap:7px;margin-bottom:10px;}
+.pitem{display:flex;align-items:center;gap:10px;background:var(--s2);border:1px solid var(--border);border-radius:var(--rs);padding:9px 11px;}
+.pthumb{width:42px;height:42px;border-radius:8px;object-fit:cover;flex-shrink:0;border:1px solid var(--border);}
 .pname{flex:1;font-size:13px;color:var(--text2);font-weight:600;}
-.pdel{background:var(--red2);border:none;color:var(--red);font-size:14px;font-weight:700;cursor:pointer;padding:6px 10px;border-radius:7px;flex-shrink:0;}
-.apbtns{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.bpage{
-  background:linear-gradient(135deg,var(--purple3),#f5f0ff);
-  border:2px dashed var(--purple2);border-radius:var(--rs);
-  padding:14px 6px;font-family:'Heebo',sans-serif;font-size:13px;font-weight:700;
-  color:var(--purple);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;
-  transition:all .15s;
-}
+.pdel{background:var(--red2);border:none;color:var(--red);font-size:13px;font-weight:700;cursor:pointer;padding:5px 9px;border-radius:6px;}
+.apbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.bpage{background:linear-gradient(135deg,var(--purple3),#f5f0ff);border:2px dashed var(--purple2);border-radius:var(--rs);padding:13px 6px;font-family:'Heebo',sans-serif;font-size:13px;font-weight:700;color:var(--purple);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;}
 .bpage:active{background:var(--purple);color:#fff;border-style:solid;}
 #fileC,#fileG{display:none;}
-.pcnt{
-  font-size:12px;color:var(--green);text-align:center;margin-bottom:8px;display:none;
-  background:var(--green2);padding:7px 12px;border-radius:10px;font-weight:700;
-}
+.pcnt{font-size:12px;text-align:center;margin-bottom:7px;display:none;background:var(--green2);color:var(--green);padding:6px 10px;border-radius:9px;font-weight:700;}
 
 /* SUMMARY */
-.summ{
-  background:linear-gradient(135deg,#6c3eb8,#8b5cf6);
-  border-radius:var(--r);padding:16px 18px;
-  font-size:13px;line-height:2.2;display:none;margin-bottom:14px;
-  box-shadow:var(--shadow2);
-}
+.summ{background:linear-gradient(135deg,#6c3eb8,#8b5cf6);border-radius:var(--r);padding:14px 16px;font-size:13px;line-height:2.1;display:none;margin-bottom:12px;box-shadow:var(--shadow2);}
 .summ.show{display:block;}
 .srow{display:flex;justify-content:space-between;color:rgba(255,255,255,.8);}
 .sv{font-weight:800;color:#fff;}
 
 /* DUP */
-.dup{background:var(--red2);border:1.5px solid var(--red);border-radius:var(--rs);padding:10px 14px;font-size:13px;color:var(--red);display:none;margin-top:8px;font-weight:700;}
+.dup{background:var(--red2);border:2px solid var(--red);border-radius:var(--rs);padding:14px 16px;font-size:15px;color:var(--red);display:none;margin-top:10px;font-weight:800;text-align:center;box-shadow:0 4px 16px rgba(220,38,38,.25);}
+.dup.show{display:block;animation:dupPulse .4s ease;}
+@keyframes dupPulse{0%{transform:scale(.95);}60%{transform:scale(1.04);}100%{transform:scale(1);}}
 .dup.show{display:block;}
 
 /* SUBMIT */
-.bsub{
-  width:100%;
-  background:linear-gradient(135deg,#6c3eb8,#8b5cf6);
-  color:#fff;border:none;border-radius:var(--r);
-  padding:18px;font-family:'Rubik',sans-serif;font-size:18px;font-weight:900;
-  cursor:pointer;position:relative;overflow:hidden;
-  box-shadow:0 8px 30px rgba(108,62,184,.35);
-  letter-spacing:.2px;transition:transform .1s,box-shadow .1s;
-}
-.bsub:active{transform:scale(.98);box-shadow:var(--shadow);}
+.bsub{width:100%;background:linear-gradient(135deg,#6c3eb8,#8b5cf6);color:#fff;border:none;border-radius:var(--r);padding:17px;font-family:'Rubik',sans-serif;font-size:17px;font-weight:900;cursor:pointer;position:relative;overflow:hidden;box-shadow:0 8px 30px rgba(108,62,184,.35);transition:transform .1s;}
+.bsub:active{transform:scale(.98);}
 .bsub:disabled{opacity:.5;cursor:not-allowed;}
-.bsub .sp{display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:24px;height:24px;border:3px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;}
+.bsub .sp{display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:22px;height:22px;border:3px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;}
 .bsub.loading .sp{display:block;}.bsub.loading .bt{opacity:0;}
 @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg);}}
 
 /* HISTORY */
-.fbar{background:var(--s1);border-bottom:1px solid var(--border);padding:14px 16px;position:relative;z-index:1;}
-.ilist{padding:12px 14px;display:flex;flex-direction:column;gap:10px;}
-.icard{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:16px;cursor:pointer;box-shadow:var(--shadow);transition:all .15s;}
-.icard:active{border-color:var(--purple);box-shadow:var(--shadow2);}
-.itop{display:flex;justify-content:space-between;margin-bottom:6px;align-items:center;}
-.isup{font-size:15px;font-weight:900;color:var(--text);}
-.idate{font-size:11px;color:var(--text2);background:var(--purple3);padding:3px 9px;border-radius:8px;font-weight:700;}
-.idigs{font-size:13px;color:var(--text2);}
-.ipay{display:inline-block;margin-top:6px;font-size:11px;font-weight:800;background:var(--teal2);color:var(--teal);border-radius:20px;padding:3px 10px;}
-.iempty{text-align:center;padding:60px 20px;color:var(--text3);font-size:14px;line-height:2.2;}
+.fbar{background:var(--s1);border-bottom:1px solid var(--border);padding:12px 14px;position:relative;z-index:1;}
+.ilist{padding:10px 12px;display:flex;flex-direction:column;gap:8px;}
+.icard{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:14px;box-shadow:var(--shadow);transition:all .15s;}
+.icard:active{border-color:var(--purple);}
+.itop{display:flex;justify-content:space-between;margin-bottom:5px;align-items:center;gap:6px;}
+.isup{font-size:14px;font-weight:900;color:var(--text);flex:1;}
+.idate{font-size:11px;color:var(--text2);background:var(--purple3);padding:2px 8px;border-radius:7px;font-weight:700;white-space:nowrap;}
+.idigs{font-size:12px;color:var(--text2);margin-bottom:4px;}
+.inum{font-size:11px;color:var(--text3);font-weight:600;}
+.ipay{display:inline-block;font-size:11px;font-weight:800;background:var(--teal2);color:var(--teal);border-radius:20px;padding:2px 9px;margin-left:5px;}
+.iamt{font-size:13px;font-weight:800;color:var(--purple);}
+.icat{display:inline-block;font-size:10px;font-weight:700;background:var(--gold2);color:var(--gold);border-radius:20px;padding:2px 8px;margin-left:5px;}
+.ipaid{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:800;border-radius:20px;padding:2px 9px;}
+.ipaid.yes{background:var(--green2);color:var(--green);}
+.ipaid.no{background:var(--red2);color:var(--red);}
+.ibtns{display:flex;gap:6px;margin-top:8px;}
+.ibtn{flex:1;border:none;border-radius:8px;padding:7px 4px;font-family:'Heebo',sans-serif;font-size:11px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;}
+.ibtn.edit{background:var(--purple3);color:var(--purple);}
+.ibtn.open{background:var(--blue2);color:var(--blue);}
+.ibtn.pay{background:var(--green2);color:var(--green);}
+.iempty{text-align:center;padding:50px 20px;color:var(--text3);font-size:14px;line-height:2.2;}
+
+/* STAT CARDS */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 12px 0;}
+.stat{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:14px;box-shadow:var(--shadow);text-align:center;}
+.stat-val{font-size:20px;font-weight:900;color:var(--purple);font-family:'Rubik',sans-serif;}
+.stat-lbl{font-size:11px;color:var(--text2);font-weight:600;margin-top:2px;}
+.stat.green .stat-val{color:var(--green);}
+.stat.red .stat-val{color:var(--red);}
+.stat.gold .stat-val{color:var(--gold);}
+
+/* REPORTS PAGE */
+.rsec{padding:12px;max-width:500px;margin:0 auto;}
+.rep-tabs{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;padding-bottom:2px;}
+.rtab{padding:8px 14px;background:var(--s2);border:1.5px solid var(--border);border-radius:20px;font-size:12px;font-weight:700;color:var(--text2);cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.rtab.active{background:var(--purple3);border-color:var(--purple);color:var(--purple);}
+.rpanel{display:none;}.rpanel.active{display:block;}
+
+/* BULK PAYMENT PAGE */
+.pay-total-bar{background:linear-gradient(135deg,#6c3eb8,#8b5cf6);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-radius:var(--r);margin-bottom:10px;box-shadow:var(--shadow2);}
+.pt-lbl{font-size:10px;color:rgba(255,255,255,.7);font-weight:700;text-transform:uppercase;letter-spacing:.8px;}
+.pt-cnt{font-size:18px;font-weight:900;color:#fff;}
+.pt-val{font-size:24px;font-weight:900;color:#fff;}
+.pay-inv-item{display:flex;align-items:center;gap:12px;background:var(--s1);border:1.5px solid var(--border);border-radius:var(--r);padding:13px 14px;margin-bottom:8px;cursor:pointer;transition:all .15s;box-shadow:var(--shadow);}
+.pay-inv-item.selected{border-color:var(--purple);background:var(--purple3);}
+.pay-inv-item:active{transform:scale(.99);}
+.pi-check{font-size:22px;flex-shrink:0;width:28px;text-align:center;}
+.pi-info{flex:1;}
+.pi-sup{font-size:14px;font-weight:800;color:var(--text);margin-bottom:3px;}
+.pi-details{font-size:12px;color:var(--text2);}
+.pi-amt{font-weight:800;color:var(--purple);}
+
+/* CREDIT CARD */
+.cc-field{background:linear-gradient(135deg,#1e1040,#3b1f8c);border-radius:var(--rs);padding:14px;margin-top:4px;}
+.cc-field .flabel{color:rgba(255,255,255,.7);}
+.cc-field input{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3);color:#fff;}
+.cc-field input::placeholder{color:rgba(255,255,255,.4);}
+.cc-field input:focus{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.2);}
+.sup-search-wrap{position:relative;margin-bottom:2px;}
+.sup-search-btn{width:100%;background:var(--s2);border:1.5px solid var(--border);border-radius:var(--rs);padding:12px 14px;font-size:15px;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:border-color .15s;}
+.sup-search-btn.active{border-color:var(--purple2);box-shadow:0 0 0 3px var(--purple3);}
+.sup-search-drop{display:none;position:absolute;top:calc(100% + 3px);right:0;left:0;background:var(--s1);border:1.5px solid var(--purple2);border-radius:var(--rs);z-index:40;box-shadow:var(--shadow2);overflow:hidden;}
+.sup-search-drop.open{display:block;}
+.sup-drop-list{max-height:220px;overflow-y:auto;}
+.sup-drop-item{padding:11px 14px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.sup-drop-item:last-child{border:none;}
+.sup-drop-item:active,.sup-drop-item.sel{background:var(--purple3);color:var(--purple);}
+.sup-cat-badge{font-size:10px;color:var(--text3);font-weight:500;}
+
+/* MULTI SELECT - dropdown */
+.msup-wrap{position:relative;margin-top:4px;}
+.msup-btn{width:100%;background:var(--s2);border:1.5px solid var(--border);border-radius:var(--rs);padding:11px 14px;font-family:'Heebo',sans-serif;font-size:14px;color:var(--text);cursor:pointer;text-align:right;display:flex;justify-content:space-between;align-items:center;outline:none;}
+.msup-drop{display:none;position:absolute;top:calc(100% + 4px);right:0;left:0;background:var(--s1);border:1.5px solid var(--border);border-radius:var(--rs);z-index:30;max-height:220px;overflow-y:auto;box-shadow:var(--shadow2);}
+.msup-drop.open{display:block;}
+.msup-item{padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);}
+.msup-item:last-child{border:none;}
+.msup-item.sel{background:var(--purple3);color:var(--purple);font-weight:700;}
+.msup-ck{width:18px;height:18px;border-radius:5px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;}
+.msup-item.sel .msup-ck{background:var(--purple);border-color:var(--purple);color:#fff;}
+.msup-list{display:none;}/* legacy - hidden */
+
+/* REPORT TABLE */
+.rtbl{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px;}
+.rtbl th{background:var(--purple3);color:var(--purple);padding:8px 6px;font-weight:800;text-align:right;font-size:11px;}
+.rtbl td{padding:8px 6px;border-bottom:1px solid var(--border);color:var(--text);}
+.rtbl tr:last-child td{border-bottom:none;}
+.rtbl .total{font-weight:800;color:var(--purple);background:var(--s2);}
 
 /* SEND */
-.ssec{padding:14px;max-width:500px;margin:0 auto;}
-.sres{background:var(--green2);border:1px solid #86efac;border-radius:var(--rs);padding:11px 14px;font-size:13px;color:var(--green);margin-top:9px;display:none;font-weight:700;}
+.ssec{padding:12px;max-width:500px;margin:0 auto;}
+.sres{background:var(--green2);border:1px solid #86efac;border-radius:var(--rs);padding:10px 12px;font-size:13px;color:var(--green);margin-top:8px;display:none;font-weight:700;}
 .sres.show{display:block;}
 .sres.err{background:var(--red2);border-color:#fca5a5;color:var(--red);}
 
 /* BUTTONS */
-.bgreen{
-  width:100%;background:linear-gradient(135deg,#16a34a,#22c55e);
-  color:#fff;border:none;border-radius:var(--rs);
-  padding:14px;font-family:'Heebo',sans-serif;font-size:15px;font-weight:800;
-  cursor:pointer;margin-top:9px;box-shadow:0 4px 16px rgba(22,163,74,.25);
-}
-.bwa{
-  width:100%;background:linear-gradient(135deg,#128c7e,#25d366);
-  color:#fff;border:none;border-radius:var(--rs);
-  padding:14px;font-family:'Heebo',sans-serif;font-size:15px;font-weight:800;
-  cursor:pointer;margin-top:9px;display:flex;align-items:center;justify-content:center;gap:9px;
-  box-shadow:0 4px 16px rgba(37,211,102,.25);
-}
-.bout{
-  width:100%;background:var(--s2);border:1.5px solid var(--border);border-radius:var(--rs);
-  padding:13px;font-family:'Heebo',sans-serif;font-size:14px;font-weight:700;
-  color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
-  margin-top:9px;transition:all .15s;
-}
+.bgreen{width:100%;background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;border:none;border-radius:var(--rs);padding:13px;font-family:'Heebo',sans-serif;font-size:15px;font-weight:800;cursor:pointer;margin-top:8px;box-shadow:0 4px 16px rgba(22,163,74,.25);}
+.bwa{width:100%;background:linear-gradient(135deg,#128c7e,#25d366);color:#fff;border:none;border-radius:var(--rs);padding:13px;font-family:'Heebo',sans-serif;font-size:15px;font-weight:800;cursor:pointer;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 16px rgba(37,211,102,.2);}
+.bout{width:100%;background:var(--s2);border:1.5px solid var(--border);border-radius:var(--rs);padding:12px;font-family:'Heebo',sans-serif;font-size:14px;font-weight:700;color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;margin-top:8px;transition:all .15s;}
 .bout:active{border-color:var(--purple);color:var(--purple);}
 .bout.danger{border-color:var(--red);color:var(--red);}
-.bcon{
-  width:100%;background:linear-gradient(135deg,#6c3eb8,#8b5cf6);
-  color:#fff;border:none;border-radius:var(--rs);
-  padding:15px;font-family:'Rubik',sans-serif;font-size:16px;font-weight:800;
-  cursor:pointer;box-shadow:var(--shadow2);
-}
-hr.div{border:none;border-top:1px solid var(--border);margin:12px 0;}
+.bpurple{width:100%;background:linear-gradient(135deg,#6c3eb8,#8b5cf6);color:#fff;border:none;border-radius:var(--rs);padding:13px;font-family:'Heebo',sans-serif;font-size:15px;font-weight:800;cursor:pointer;margin-top:8px;box-shadow:var(--shadow2);}
+.bcon{width:100%;background:linear-gradient(135deg,#6c3eb8,#8b5cf6);color:#fff;border:none;border-radius:var(--rs);padding:14px;font-family:'Rubik',sans-serif;font-size:16px;font-weight:800;cursor:pointer;box-shadow:var(--shadow2);}
+hr.div{border:none;border-top:1px solid var(--border);margin:10px 0;}
 .mt8{margin-top:8px;}
 
+/* MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;align-items:flex-end;justify-content:center;}
+.modal-bg.open{display:flex;}
+.modal{background:var(--s1);border-radius:24px 24px 0 0;padding:20px 16px 32px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;}
+.modal h3{font-size:17px;font-weight:900;color:var(--text);margin-bottom:14px;font-family:'Rubik',sans-serif;}
+.mclose{float:left;background:var(--s2);border:none;color:var(--text2);font-size:18px;cursor:pointer;padding:4px 10px;border-radius:8px;font-weight:700;}
+
 /* TOAST */
-.toast{
-  position:fixed;bottom:96px;left:50%;transform:translateX(-50%) translateY(20px);
-  background:var(--text);color:#fff;border-radius:var(--r);
-  padding:13px 22px;font-size:14px;font-weight:700;max-width:88vw;text-align:center;
-  z-index:200;transition:transform .3s cubic-bezier(.34,1.56,.64,1),opacity .3s;
-  opacity:0;pointer-events:none;box-shadow:0 10px 40px rgba(0,0,0,.25);
-}
+.toast{position:fixed;bottom:94px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--text);color:#fff;border-radius:var(--r);padding:12px 20px;font-size:14px;font-weight:700;max-width:88vw;text-align:center;z-index:200;transition:transform .3s cubic-bezier(.34,1.56,.64,1),opacity .3s;opacity:0;pointer-events:none;box-shadow:0 10px 40px rgba(0,0,0,.25);}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
 .toast.ok{background:linear-gradient(135deg,#16a34a,#22c55e);}
 .toast.err{background:linear-gradient(135deg,#dc2626,#ef4444);}
 .toast.warn{background:linear-gradient(135deg,#d97706,#f59e0b);}
 
+/* PWA HINT */
+.pwa-hint{display:none;background:linear-gradient(135deg,#6c3eb8,#8b5cf6);color:#fff;border-radius:var(--rs);padding:11px 14px;margin:10px 12px 0;font-size:13px;font-weight:700;text-align:center;cursor:pointer;box-shadow:var(--shadow2);position:relative;z-index:1;}
+
 /* SETUP */
 #setupPage{padding:20px;max-width:480px;margin:0 auto;}
-.sbox{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:24px;box-shadow:var(--shadow2);}
-.sbox h2{font-size:20px;font-weight:900;margin-bottom:10px;color:var(--purple);font-family:'Rubik',sans-serif;}
-.sbox p{font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:18px;}
-ol.steps{padding-right:20px;margin-bottom:18px;}
-ol.steps li{font-size:13px;color:var(--text2);padding:8px 0;border-bottom:1px solid var(--border);line-height:1.6;}
+.sbox{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:22px;box-shadow:var(--shadow2);}
+.sbox h2{font-size:19px;font-weight:900;margin-bottom:8px;color:var(--purple);font-family:'Rubik',sans-serif;}
+.sbox p{font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:14px;}
+ol.steps{padding-right:18px;margin-bottom:14px;}
+ol.steps li{font-size:13px;color:var(--text2);padding:6px 0;border-bottom:1px solid var(--border);line-height:1.5;}
 ol.steps li:last-child{border:none;}
 ol.steps li strong{color:var(--text);}
-.url-eg{background:var(--s2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:11px;font-family:monospace;color:var(--text2);word-break:break-all;margin-bottom:14px;direction:ltr;text-align:left;}
-
-/* BADGE / PWA INSTALL */
-.pwa-hint{
-  display:none;
-  background:linear-gradient(135deg,#6c3eb8,#8b5cf6);
-  color:#fff;border-radius:var(--rs);padding:12px 16px;margin:12px 14px 0;
-  font-size:13px;font-weight:700;text-align:center;cursor:pointer;
-  box-shadow:var(--shadow2);position:relative;z-index:1;
-}
-.pwa-hint span{display:block;font-size:11px;opacity:.8;margin-top:2px;font-weight:500;}
-
-/* COLOR ACCENTS ON CARDS */
-.card.teal{border-right:4px solid var(--teal);}
-.card.coral{border-right:4px solid var(--coral);}
-.card.gold{border-right:4px solid var(--gold);}
-.card.purple{border-right:4px solid var(--purple);}
+.url-eg{background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:11px;font-family:monospace;color:var(--text2);word-break:break-all;margin-bottom:12px;direction:ltr;text-align:left;}
 </style>
 </head>
 <body>
 
-<!-- PWA INSTALL HINT (iOS) -->
-<div class="pwa-hint" id="pwaHint" onclick="document.getElementById('pwaHint').style.display='none'">
-  📲 הוסף לסרגל הבית — לחץ על <strong>שתף ← הוסף למסך הבית</strong>
-  <span>לחץ לסגירה</span>
+<div class="pwa-hint" id="pwaHint" onclick="this.style.display='none'">
+  📲 הוסף למסך הבית לחוויה מלאה
 </div>
 
 <!-- SETUP -->
 <div id="setupPage" style="display:none;padding-top:28px;">
-  <div style="text-align:center;margin-bottom:24px;">
-    <!-- MERAV LOGO BIG -->
-    <div style="display:inline-flex;align-items:center;justify-content:center;width:80px;height:80px;background:linear-gradient(135deg,#6c3eb8,#8b5cf6);border-radius:24px;box-shadow:0 8px 30px rgba(108,62,184,.35);margin-bottom:12px;">
-      <span style="font-family:'Rubik',sans-serif;font-size:36px;font-weight:900;color:#fff;">מ</span>
+  <div style="text-align:center;margin-bottom:20px;">
+    <div style="display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;background:linear-gradient(135deg,#6c3eb8,#8b5cf6);border-radius:22px;box-shadow:0 8px 30px rgba(108,62,184,.35);margin-bottom:10px;">
+      <span style="font-family:'Rubik',sans-serif;font-size:32px;font-weight:900;color:#fff;">מ</span>
     </div>
-    <div style="font-family:'Rubik',sans-serif;font-size:22px;font-weight:900;color:var(--purple);">מירב חשבוניות</div>
+    <div style="font-family:'Rubik',sans-serif;font-size:20px;font-weight:900;color:var(--purple);">מירב חשבוניות</div>
   </div>
   <div class="sbox">
     <h2>⚙️ הגדרה ראשונה</h2>
     <p>חבר את האפליקציה ל-Google Drive — פעם אחת בלבד.</p>
     <ol class="steps">
       <li>פתח <strong>script.google.com</strong> מהמחשב</li>
-      <li>New project → מחק קוד → הדבק <strong>Code_v2.gs</strong></li>
+      <li>New project → מחק קוד → הדבק <strong>Code_v4.gs</strong></li>
       <li>שמור → <strong>Deploy → New deployment</strong></li>
       <li>Web app | Execute as: Me | Who has access: <strong>Anyone</strong></li>
-      <li>Deploy → Allow → העתק URL (מסתיים ב <strong>/exec</strong>)</li>
+      <li>Deploy → Allow → העתק URL</li>
     </ol>
     <div class="url-eg">https://script.google.com/macros/s/AKfycby.../exec</div>
-    <input type="text" id="setupUrl" placeholder="הדבק כאן את ה-URL" dir="ltr" style="margin-bottom:12px;" />
+    <input type="text" id="setupUrl" placeholder="הדבק כאן את ה-URL" dir="ltr" style="margin-bottom:10px;" />
     <button class="bcon" onclick="saveSetup()">✅ חבר ושמור</button>
   </div>
 </div>
 
-<!-- MAIN -->
+<!-- MAIN APP -->
 <div id="mainApp" style="display:none;">
   <div class="tab-bar">
-    <div class="tab active" onclick="showTab('upload')" id="tab-upload"><span class="ti">📤</span>העלאה</div>
-    <div class="tab" onclick="showTab('history')" id="tab-history"><span class="ti">📋</span>היסטוריה</div>
-    <div class="tab" onclick="showTab('send')" id="tab-send"><span class="ti">📨</span>שליחה</div>
-    <div class="tab" onclick="showTab('settings')" id="tab-settings"><span class="ti">⚙️</span>הגדרות</div>
+    <div class="tab active" onclick="showTab('upload')"  id="tab-upload" ><span class="ti">📤</span>העלאה</div>
+    <div class="tab"        onclick="showTab('history')" id="tab-history"><span class="ti">📋</span>היסטוריה</div>
+    <div class="tab"        onclick="showTab('pay')"     id="tab-pay"    ><span class="ti">💳</span>תשלום</div>
+    <div class="tab"        onclick="showTab('reports')" id="tab-reports"><span class="ti">📊</span>דוחות</div>
+    <div class="tab"        onclick="showTab('send')"    id="tab-send"   ><span class="ti">📨</span>שליחה</div>
+    <div class="tab"        onclick="showTab('settings')" id="tab-settings"><span class="ti">⚙️</span>הגדרות</div>
   </div>
 
-  <!-- UPLOAD -->
+  <!-- ===== UPLOAD PAGE ===== -->
   <div class="page active" id="page-upload">
     <div class="header">
-      <div class="hrow">
-        <div class="logo">🧾</div>
-        <div>
-          <h1>מירב חשבוניות</h1>
-        </div>
-      </div>
+      <div class="hrow"><div class="logo">🧾</div><h1>מירב חשבוניות</h1></div>
       <div class="spill"><div class="dot" id="sDot"></div><span id="sText">מתחבר...</span></div>
     </div>
     <div class="body">
 
       <div class="card purple">
         <div class="clabel">ספק</div>
-        <div class="sw"><select id="supSel" onchange="onSupChange()"><option value="">— בחר ספק —</option></select><span class="sa">▾</span></div>
+
+        <!-- חיפוש ספק -->
+        <div class="sup-search-wrap" id="supSearchWrap">
+          <div class="sup-search-btn" id="supSearchBtn" onclick="toggleSupSearch()">
+            <span id="supSelLabel">— בחר ספק —</span>
+            <span style="color:var(--text3);">🔍</span>
+          </div>
+          <div class="sup-search-drop" id="supSearchDrop">
+            <input type="text" id="supSearchInp" placeholder="חפש ספק..." oninput="filterSupsDrop(this.value)"
+              style="border:none;border-bottom:1px solid var(--border);border-radius:0;background:#fff;padding:11px 14px;" />
+            <div id="supDropList" class="sup-drop-list"></div>
+          </div>
+        </div>
+        <input type="hidden" id="supSel" value="" />
+
         <div class="ast" onclick="toggleAS()">＋ הוסף ספק חדש</div>
         <div class="asr" id="asRow">
-          <input type="text" id="nsInp" placeholder="שם הספק החדש" />
-          <button class="bsm" onclick="addSup()">הוסף</button>
+          <div style="display:flex;flex-direction:column;gap:7px;width:100%;">
+            <input type="text" id="nsInp" placeholder="שם הספק החדש" />
+            <div style="display:flex;gap:7px;">
+              <div class="sw" style="flex:1;">
+                <select id="nsCat">
+                  <option value="">— קטגוריה קיימת —</option>
+                </select>
+                <span class="sa">▾</span>
+              </div>
+              <input type="text" id="nsCatNew" placeholder="או קטגוריה חדשה" style="flex:1;" />
+            </div>
+            <button class="bsm" onclick="addSup()" style="width:100%;height:44px;">הוסף ספק</button>
+          </div>
         </div>
       </div>
 
       <div class="card teal">
         <div class="clabel">פרטי חשבונית</div>
+        <div id="invNumBadge" class="inv-num" style="display:none;">🔢 מספר חשבונית: <strong id="invNumVal">—</strong></div>
         <input type="text" class="digs" id="digsInp" placeholder="_ _ _ _" maxlength="4" inputmode="numeric" oninput="this.value=this.value.replace(/\D/g,'');clrDup();updSum()" />
-        <div class="dup" id="dupW">⚠️ חשבונית עם ספרות אלו כבר קיימת לספק זה!</div>
-        <div class="fcol mt8">
-          <div class="flabel">📅 תאריך חשבונית</div>
-          <input type="date" id="dateInp" onchange="updSum()" />
+        <div class="dup" id="dupW">
+          ⚠️ כפילות! חשבונית עם ספרות אלו כבר קיימת לספק זה!
         </div>
+        <div class="frow">
+          <div class="fcol">
+            <div class="flabel">📅 תאריך חשבונית</div>
+            <input type="date" id="dateInp" onchange="updSum()" />
+          </div>
+          <div class="fcol">
+            <div class="flabel">💰 סכום (₪)</div>
+            <input type="number" id="amtTotal" placeholder="0.00" inputmode="decimal" oninput="updSum()" />
+          </div>
+        </div>
+        <input type="hidden" id="amtBefore" value="" />
       </div>
 
       <div class="card gold">
-        <div class="clabel">תשלום (אופציונלי)</div>
-        <div class="popts">
-          <div class="popt active" id="po-none"  onclick="setPay('')">ללא</div>
-          <div class="popt"        id="po-cash"  onclick="setPay('cash')">💵 מזומן</div>
-          <div class="popt"        id="po-check" onclick="setPay('check')">📄 צ׳ק</div>
-          <div class="popt"        id="po-both"  onclick="setPay('both')">🔀 פיצול</div>
+        <div class="clabel">תשלום</div>
+        <div class="popts" style="flex-wrap:wrap;gap:6px;">
+          <div class="popt active" id="po-unpaid" onclick="setPay('unpaid')" style="flex:0 0 calc(50% - 3px);">⏳ טרם שולם</div>
+          <div class="popt"        id="po-cash"   onclick="setPay('cash')"   style="flex:0 0 calc(50% - 3px);">💵 מזומן</div>
+          <div class="popt"        id="po-check"  onclick="setPay('check')"  style="flex:0 0 calc(50% - 3px);">📄 צ׳ק</div>
+          <div class="popt"        id="po-both"   onclick="setPay('both')"   style="flex:0 0 calc(50% - 3px);">🔀 מפוצל</div>
+          <div class="popt"        id="po-bank"   onclick="setPay('bank')"   style="flex:1;">🏦 העברה בנקאית</div>
         </div>
-
         <div class="pf" id="pf-cash">
-          <div class="fcol">
-            <div class="flabel">סכום מזומן (₪)</div>
-            <input type="number" id="cAmt" placeholder="0.00" inputmode="decimal" />
-          </div>
+          <div class="fcol"><div class="flabel">סכום מזומן (₪)</div><input type="number" id="cAmt" placeholder="0.00" inputmode="decimal" /></div>
         </div>
-
         <div class="pf" id="pf-check">
           <div class="frow">
             <div class="fcol"><div class="flabel">מספר צ׳ק</div><input type="text" id="cNum" placeholder="123456" inputmode="numeric" /></div>
             <div class="fcol"><div class="flabel">סכום (₪)</div><input type="number" id="ckAmt" placeholder="0.00" inputmode="decimal" /></div>
           </div>
-          <div class="fcol mt8">
-            <div class="flabel">📅 תאריך צ׳ק</div>
-            <input type="date" id="cDate" />
-          </div>
+          <div class="fcol mt8"><div class="flabel">📅 תאריך צ׳ק</div><input type="date" id="cDate" /></div>
         </div>
-
         <div class="pf" id="pf-both">
           <div class="pay-title">💵 מזומן</div>
-          <div class="fcol" style="margin-bottom:12px;">
-            <div class="flabel">סכום מזומן (₪)</div>
-            <input type="number" id="cAmt2" placeholder="0.00" inputmode="decimal" />
-          </div>
+          <div class="fcol" style="margin-bottom:10px;"><div class="flabel">סכום מזומן (₪)</div><input type="number" id="cAmt2" placeholder="0.00" inputmode="decimal" /></div>
           <hr class="div">
           <div class="pay-title">📄 צ׳ק</div>
           <div class="frow">
             <div class="fcol"><div class="flabel">מספר צ׳ק</div><input type="text" id="cNum2" placeholder="123456" inputmode="numeric" /></div>
             <div class="fcol"><div class="flabel">סכום צ׳ק (₪)</div><input type="number" id="ckAmt2" placeholder="0.00" inputmode="decimal" /></div>
           </div>
-          <div class="fcol mt8">
-            <div class="flabel">📅 תאריך צ׳ק</div>
-            <input type="date" id="cDate2" />
+          <div class="fcol mt8"><div class="flabel">📅 תאריך צ׳ק</div><input type="date" id="cDate2" /></div>
+        </div>
+        <div class="pf" id="pf-bank">
+          <div class="frow">
+            <div class="fcol"><div class="flabel">מספר אסמכתה</div><input type="text" id="bankRef" placeholder="123456789" inputmode="numeric" /></div>
+            <div class="fcol"><div class="flabel">סכום (₪)</div><input type="number" id="bankAmt" placeholder="0.00" inputmode="decimal" /></div>
           </div>
         </div>
       </div>
@@ -436,6 +458,7 @@ ol.steps li strong{color:var(--text);}
         <div class="srow"><span>ספק</span><span class="sv" id="smS">—</span></div>
         <div class="srow"><span>4 ספרות</span><span class="sv" id="smD">—</span></div>
         <div class="srow"><span>תאריך</span><span class="sv" id="smT">—</span></div>
+        <div class="srow"><span>סכום כולל מע"מ</span><span class="sv" id="smAmt">—</span></div>
         <div class="srow"><span>דפים</span><span class="sv" id="smP">—</span></div>
         <div class="srow"><span>תשלום</span><span class="sv" id="smPy">—</span></div>
       </div>
@@ -446,11 +469,20 @@ ol.steps li strong{color:var(--text);}
     </div>
   </div>
 
-  <!-- HISTORY -->
+  <!-- ===== HISTORY PAGE ===== -->
   <div class="page" id="page-history">
     <div class="header"><div class="hrow"><div class="logo">📋</div><h1>היסטוריה</h1></div></div>
+
+    <!-- STATS ROW -->
+    <div class="stats" id="histStats" style="display:none;">
+      <div class="stat"><div class="stat-val" id="stTotal">—</div><div class="stat-lbl">סה"כ חשבוניות</div></div>
+      <div class="stat gold"><div class="stat-val" id="stSum">—</div><div class="stat-lbl">סה"כ סכום ₪</div></div>
+      <div class="stat green"><div class="stat-val" id="stPaid">—</div><div class="stat-lbl">שולמו</div></div>
+      <div class="stat red"><div class="stat-val" id="stUnpaid">—</div><div class="stat-lbl">טרם שולמו</div></div>
+    </div>
+
     <div class="fbar">
-      <div class="fcol" style="margin-bottom:10px;">
+      <div class="fcol" style="margin-bottom:8px;">
         <div class="flabel">ספק</div>
         <div class="sw"><select id="hSup" onchange="loadHist()"><option value="all">כל הספקים</option></select><span class="sa">▾</span></div>
       </div>
@@ -458,19 +490,260 @@ ol.steps li strong{color:var(--text);}
         <div class="fcol"><div class="flabel">מתאריך</div><input type="date" id="hFrom" onchange="loadHist()" /></div>
         <div class="fcol"><div class="flabel">עד תאריך</div><input type="date" id="hTo" onchange="loadHist()" /></div>
       </div>
+      <div class="frow" style="margin-top:8px;">
+        <div class="fcol">
+          <div class="flabel">סטטוס</div>
+          <div class="sw">
+            <select id="hPaid" onchange="loadHist()">
+              <option value="all">הכל</option>
+              <option value="paid">שולמו</option>
+              <option value="unpaid">לא שולמו</option>
+            </select><span class="sa">▾</span>
+          </div>
+        </div>
+        <div class="fcol">
+          <div class="flabel">קטגוריה</div>
+          <div class="sw">
+            <select id="hCat" onchange="loadHist()">
+              <option value="all">הכל</option>
+              <option>מזון כללי</option><option>לחם</option><option>חלב</option>
+              <option>שתיה</option><option>סיגריות</option><option>ניקיון</option><option>אחר</option>
+            </select><span class="sa">▾</span>
+          </div>
+        </div>
+      </div>
     </div>
     <div id="invList" class="ilist"><div class="iempty">📂<br>בחר סינון לטעינת חשבוניות</div></div>
   </div>
 
-  <!-- SEND -->
+  <!-- ===== PAYMENT PAGE ===== -->
+  <div class="page" id="page-pay">
+    <div class="header"><div class="hrow"><div class="logo">💳</div><h1>תשלום לספק</h1></div></div>
+    <div class="body">
+
+      <!-- בחירת ספק -->
+      <div class="card purple">
+        <div class="clabel">בחר ספק</div>
+        <div class="sup-search-wrap" id="paySupSearchWrap">
+          <div class="sup-search-btn" id="paySupSearchBtn" onclick="togglePaySupSearch()">
+            <span id="paySupLabel">— בחר ספק —</span>
+            <span style="color:var(--text3);">🔍</span>
+          </div>
+          <div class="sup-search-drop" id="paySupSearchDrop">
+            <input type="text" id="paySupSearchInp" placeholder="חפש ספק..."
+              oninput="filterPaySup(this.value)"
+              style="border:none;border-bottom:1px solid var(--border);border-radius:0;background:#fff;padding:11px 14px;" />
+            <div id="paySupDropList" class="sup-drop-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- סה"כ שנבחר -->
+      <div class="pay-total-bar" id="payTotalBar" style="display:none;">
+        <div>
+          <div class="pt-lbl">חשבוניות שנבחרו</div>
+          <div class="pt-cnt" id="paySelCount">0 חשבוניות</div>
+        </div>
+        <div style="text-align:left;">
+          <div class="pt-lbl">סה"כ לתשלום</div>
+          <div class="pt-val" id="paySelTotal">₪0</div>
+        </div>
+      </div>
+
+      <!-- בחר/בטל הכל -->
+      <div id="paySelectAll" style="display:none;margin-bottom:8px;display:none;">
+        <button class="bout" style="margin-top:0;padding:9px;" onclick="toggleSelectAll()">
+          <span id="selAllLabel">✅ בחר הכל</span>
+        </button>
+      </div>
+
+      <!-- רשימת חשבוניות -->
+      <div id="payInvList"></div>
+
+      <!-- אופן תשלום -->
+      <div class="card gold" id="payMethodCard" style="display:none;">
+        <div class="clabel">אופן תשלום</div>
+        <div class="popts" style="flex-wrap:wrap;gap:6px;">
+          <div class="popt active" id="bpo-cash"   onclick="setBulkPay('cash')"   style="flex:0 0 calc(50% - 3px);">💵 מזומן</div>
+          <div class="popt"        id="bpo-check"  onclick="setBulkPay('check')"  style="flex:0 0 calc(50% - 3px);">📄 צ׳ק</div>
+          <div class="popt"        id="bpo-bank"   onclick="setBulkPay('bank')"   style="flex:0 0 calc(50% - 3px);">🏦 העברה</div>
+          <div class="popt"        id="bpo-credit" onclick="setBulkPay('credit')" style="flex:0 0 calc(50% - 3px);">💳 אשראי</div>
+        </div>
+
+        <!-- מזומן -->
+        <div class="pf open" id="bpf-cash">
+          <div class="fcol"><div class="flabel">סכום מזומן (₪)</div>
+          <input type="number" id="bCashAmt" placeholder="0.00" inputmode="decimal" /></div>
+        </div>
+
+        <!-- צ׳ק -->
+        <div class="pf" id="bpf-check">
+          <div class="frow">
+            <div class="fcol"><div class="flabel">מספר צ׳ק</div><input type="text" id="bCheckNum" placeholder="123456" inputmode="numeric" /></div>
+            <div class="fcol"><div class="flabel">סכום (₪)</div><input type="number" id="bCheckAmt" placeholder="0.00" inputmode="decimal" /></div>
+          </div>
+          <div class="fcol mt8"><div class="flabel">📅 תאריך צ׳ק</div><input type="date" id="bCheckDate" /></div>
+        </div>
+
+        <!-- העברה -->
+        <div class="pf" id="bpf-bank">
+          <div class="frow">
+            <div class="fcol"><div class="flabel">מספר אסמכתה</div><input type="text" id="bBankRef" placeholder="123456789" inputmode="numeric" /></div>
+            <div class="fcol"><div class="flabel">סכום (₪)</div><input type="number" id="bBankAmt" placeholder="0.00" inputmode="decimal" /></div>
+          </div>
+        </div>
+
+        <!-- אשראי -->
+        <div class="pf" id="bpf-credit">
+          <div class="cc-field">
+            <div class="frow" style="margin-top:0;">
+              <div class="fcol">
+                <div class="flabel">4 ספרות אחרונות</div>
+                <input type="text" id="bCreditLast4" placeholder="1234" maxlength="4" inputmode="numeric" />
+              </div>
+              <div class="fcol">
+                <div class="flabel">סכום (₪)</div>
+                <input type="number" id="bCreditAmt" placeholder="0.00" inputmode="decimal" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="bsub" onclick="confirmBulkPayment()" style="margin-top:4px;">
+          <span class="bt">💳 אשר תשלום לחשבוניות שנבחרו</span>
+          <div class="sp"></div>
+        </button>
+        <div class="sres" id="bulkPayRes"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== REPORTS PAGE ===== -->
+  <div class="page" id="page-reports">
+    <div class="header"><div class="hrow"><div class="logo">📊</div><h1>דוחות</h1></div></div>
+    <div class="rsec">
+      <div class="rep-tabs">
+        <div class="rtab active" onclick="showRep('summary')">📊 סיכום</div>
+        <div class="rtab" onclick="showRep('paid')">✅ שולם/לא שולם</div>
+        <div class="rtab" onclick="showRep('weekly')">📅 שבועי</div>
+        <div class="rtab" onclick="showRep('compare')">🔀 השוואה</div>
+        <div class="rtab" onclick="showRep('category')">🏷 קטגוריות</div>
+      </div>
+
+      <!-- SUMMARY -->
+      <div class="rpanel active" id="rep-summary">
+        <div class="card purple">
+          <div class="clabel">סינון</div>
+          <div class="fcol" style="margin-bottom:8px;">
+            <div class="flabel">ספקים</div>
+            <div class="msup-wrap">
+              <button class="msup-btn" onclick="toggleMsupDrop('rSupDrop1','rSups','rSupLbl1')" type="button"><span id="rSupLbl1">כל הספקים ▾</span></button>
+              <div class="msup-drop" id="rSupDrop1"></div>
+            </div>
+          </div>
+          <div class="frow">
+            <div class="fcol"><div class="flabel">מתאריך</div><input type="date" id="rFrom" /></div>
+            <div class="fcol"><div class="flabel">עד תאריך</div><input type="date" id="rTo" /></div>
+          </div>
+          <button class="bpurple" onclick="runReport('summary')">📊 הפק דוח</button>
+        </div>
+        <div id="rep-summary-out"></div>
+      </div>
+
+      <!-- PAID/UNPAID -->
+      <div class="rpanel" id="rep-paid">
+        <div class="card green">
+          <div class="clabel">שולם / לא שולם</div>
+          <div class="fcol" style="margin-bottom:8px;">
+            <div class="flabel">ספקים</div>
+            <div class="msup-wrap">
+              <button class="msup-btn" onclick="toggleMsupDrop('rSupDrop2','rSups2','rSupLbl2')" type="button"><span id="rSupLbl2">כל הספקים ▾</span></button>
+              <div class="msup-drop" id="rSupDrop2"></div>
+            </div>
+          </div>
+          <div class="frow">
+            <div class="fcol"><div class="flabel">מתאריך</div><input type="date" id="rFrom2" /></div>
+            <div class="fcol"><div class="flabel">עד תאריך</div><input type="date" id="rTo2" /></div>
+          </div>
+          <button class="bgreen" onclick="runReport('paid')" style="margin-top:8px;">✅ הפק דוח</button>
+        </div>
+        <div id="rep-paid-out"></div>
+      </div>
+
+      <!-- WEEKLY -->
+      <div class="rpanel" id="rep-weekly">
+        <div class="card teal">
+          <div class="clabel">דוח שבועי</div>
+          <div class="fcol" style="margin-bottom:8px;">
+            <div class="flabel">ספקים</div>
+            <div class="msup-wrap">
+              <button class="msup-btn" onclick="toggleMsupDrop('rSupDrop3','rSups3','rSupLbl3')" type="button"><span id="rSupLbl3">כל הספקים ▾</span></button>
+              <div class="msup-drop" id="rSupDrop3"></div>
+            </div>
+          </div>
+          <div class="frow">
+            <div class="fcol"><div class="flabel">מתאריך</div><input type="date" id="rFrom3" /></div>
+            <div class="fcol"><div class="flabel">עד תאריך</div><input type="date" id="rTo3" /></div>
+          </div>
+          <button class="bpurple" style="background:linear-gradient(135deg,#0d9488,#14b8a6);margin-top:8px;" onclick="runReport('weekly')">📅 הפק דוח שבועי</button>
+        </div>
+        <div id="rep-weekly-out"></div>
+      </div>
+
+      <!-- COMPARE -->
+      <div class="rpanel" id="rep-compare">
+        <div class="card gold">
+          <div class="clabel">השוואת תקופות</div>
+          <div class="fcol" style="margin-bottom:8px;">
+            <div class="flabel">ספקים</div>
+            <div class="msup-wrap">
+              <button class="msup-btn" onclick="toggleMsupDrop('rSupDrop4','rSups4','rSupLbl4')" type="button"><span id="rSupLbl4">כל הספקים ▾</span></button>
+              <div class="msup-drop" id="rSupDrop4"></div>
+            </div>
+          </div>
+          <div style="font-size:11px;font-weight:700;color:var(--text2);margin-bottom:5px;">📅 תקופה א׳</div>
+          <div class="frow">
+            <div class="fcol"><div class="flabel">מתאריך</div><input type="date" id="cFrom1" /></div>
+            <div class="fcol"><div class="flabel">עד תאריך</div><input type="date" id="cTo1" /></div>
+          </div>
+          <div style="font-size:11px;font-weight:700;color:var(--text2);margin:10px 0 5px;">📅 תקופה ב׳</div>
+          <div class="frow">
+            <div class="fcol"><div class="flabel">מתאריך</div><input type="date" id="cFrom2" /></div>
+            <div class="fcol"><div class="flabel">עד תאריך</div><input type="date" id="cTo2" /></div>
+          </div>
+          <button class="bpurple" style="background:linear-gradient(135deg,#d97706,#f59e0b);margin-top:8px;" onclick="runReport('compare')">🔀 השווה תקופות</button>
+        </div>
+        <div id="rep-compare-out"></div>
+      </div>
+
+      <!-- CATEGORY -->
+      <div class="rpanel" id="rep-category">
+        <div class="card coral">
+          <div class="clabel">פילוח קטגוריות</div>
+          <div class="frow">
+            <div class="fcol"><div class="flabel">מתאריך</div><input type="date" id="rFrom5" /></div>
+            <div class="fcol"><div class="flabel">עד תאריך</div><input type="date" id="rTo5" /></div>
+          </div>
+          <button class="bpurple" style="background:linear-gradient(135deg,#e85d04,#f97316);margin-top:8px;" onclick="runReport('category')">🏷 הפק פילוח</button>
+        </div>
+        <div id="rep-category-out"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SEND PAGE ===== -->
   <div class="page" id="page-send">
     <div class="header"><div class="hrow"><div class="logo">📨</div><h1>שליחת דוח</h1></div></div>
     <div class="ssec">
       <div class="card purple">
         <div class="clabel">סינון</div>
-        <div class="fcol" style="margin-bottom:10px;">
-          <div class="flabel">ספק</div>
-          <div class="sw"><select id="sSup"><option value="all">כל הספקים</option></select><span class="sa">▾</span></div>
+        <div class="fcol" style="margin-bottom:8px;">
+          <div class="flabel">ספקים</div>
+          <div class="msup-wrap">
+            <button class="msup-btn" onclick="toggleMsupDrop('sSupDrop','sSups','sSupLbl')" type="button"><span id="sSupLbl">כל הספקים ▾</span></button>
+            <div class="msup-drop" id="sSupDrop"></div>
+          </div>
         </div>
         <div class="frow">
           <div class="fcol"><div class="flabel">מתאריך</div><input type="date" id="sFrom" /></div>
@@ -479,30 +752,62 @@ ol.steps li strong{color:var(--text);}
       </div>
       <div class="card teal">
         <div class="clabel">📧 שליחה במייל</div>
-        <div class="flabel" style="margin-bottom:6px;">כתובת מייל</div>
+        <div class="flabel" style="margin-bottom:5px;">כתובת מייל</div>
         <input type="email" id="emailInp" placeholder="example@gmail.com" dir="ltr" />
-        <button class="bgreen" onclick="sendEmail()">📧 שלח דוח במייל</button>
+        <button class="bgreen" onclick="sendEmail()">📧 שלח דוח טקסט</button>
+        <button class="bpurple" onclick="sendPDFReport()" style="margin-top:8px;">📎 שלח PDF מצורף (לרו"ח)</button>
         <div class="sres" id="eRes"></div>
       </div>
-      <div class="card" style="border-right:4px solid #25d366;">
-        <div class="clabel">📱 שליחה בוואטסאפ</div>
-        <div class="flabel" style="margin-bottom:6px;">מספר טלפון (עם קידומת 972)</div>
+      <div class="card" style="border-right:4px solid var(--purple);">
+        <div class="clabel">🖨 הדפסת דוח</div>
+        <p style="font-size:12px;color:var(--text2);margin-bottom:10px;">מייצר דף סיכום להדפסה עם כל החשבוניות, אופן תשלום ומספר סידורי.</p>
+        <button class="bpurple" onclick="printReport()" style="margin-top:0;">🖨 הפק דוח להדפסה</button>
+      </div>
+        <div class="flabel" style="margin-bottom:5px;">מספר טלפון (עם קידומת 972)</div>
         <input type="text" id="waInp" placeholder="972501234567" dir="ltr" inputmode="numeric" />
         <button class="bwa" onclick="sendWA()"><span>📱</span> שלח בוואטסאפ</button>
       </div>
     </div>
   </div>
 
-  <!-- SETTINGS -->
+  <!-- ===== SETTINGS PAGE ===== -->
   <div class="page" id="page-settings">
     <div class="header"><div class="hrow"><div class="logo">⚙️</div><h1>הגדרות</h1></div></div>
     <div class="body">
       <div class="card purple">
         <div class="clabel">שרת Google</div>
-        <div class="flabel" style="margin-bottom:6px;">Web app URL</div>
+        <div class="flabel" style="margin-bottom:5px;">Web app URL</div>
         <input type="text" id="setUrl" placeholder="https://script.google.com/..." dir="ltr" />
         <button class="bout mt8" onclick="updUrl()">💾 עדכן URL</button>
         <button class="bout" onclick="testConn()">🔗 בדוק חיבור</button>
+      </div>
+      <div class="card gold">
+        <div class="clabel">ניהול ספקים</div>
+        <div class="flabel" style="margin-bottom:5px;">שנה שם / קטגוריה</div>
+        <div class="sw" style="margin-bottom:8px;"><select id="renOld" onchange="showRenCat()"><option value="">בחר ספק</option></select><span class="sa">▾</span></div>
+        <input type="text" id="renNew" placeholder="שם חדש (השאר ריק לשמור)" style="margin-bottom:8px;" />
+        <div class="flabel" style="margin-bottom:5px;">קטגוריה</div>
+        <div class="sw" style="margin-bottom:8px;">
+          <select id="renCat">
+            <option value="">-- ללא שינוי --</option>
+            <option>מזון כללי</option><option>לחם</option><option>חלב</option>
+            <option>שתיה</option><option>סיגריות</option><option>ניקיון</option><option>אחר</option>
+          </select><span class="sa">▾</span>
+        </div>
+        <div id="renCurCat" style="font-size:11px;color:var(--text3);margin-bottom:8px;"></div>
+        <button class="bout" onclick="renameSupplier()">💾 שמור שינויים</button>
+        <hr class="div" style="margin:12px 0;">
+        <div class="flabel" style="margin-bottom:5px;">מחיקת ספק</div>
+        <div class="sw" style="margin-bottom:8px;"><select id="delSupSel"><option value="">בחר ספק למחיקה</option></select><span class="sa">▾</span></div>
+        <button class="bout danger" onclick="deleteSupplier()">🗑 מחק ספק מהרשימה</button>
+      </div>
+      <div class="card teal">
+        <div class="clabel">🏷 ניהול קטגוריות</div>
+        <div style="display:flex;gap:8px;margin-bottom:12px;">
+          <input type="text" id="newCatInp" placeholder="שם קטגוריה חדשה" style="flex:1;" />
+          <button class="bsm" onclick="addCategory()" style="height:46px;">הוסף</button>
+        </div>
+        <div id="catsList"></div>
       </div>
       <div class="card coral">
         <div class="clabel">נתונים מקומיים</div>
@@ -512,94 +817,184 @@ ol.steps li strong{color:var(--text);}
   </div>
 </div>
 
+<!-- HEKTZAA MODAL -->
+<div class="modal-bg" id="hektzaaModal">
+  <div class="modal" style="padding-bottom:28px;">
+    <div style="text-align:center;margin-bottom:16px;">
+      <div style="font-size:36px;">🏛️</div>
+      <h3 style="color:var(--gold);margin-bottom:6px;">נדרש מספר הקצאה</h3>
+      <p style="font-size:13px;color:var(--text2);line-height:1.6;">
+        הסכום <strong id="hektzaaAmt"></strong> עולה על ₪11,800<br>
+        ומחייב הקצאת מספר לצרכי מע"מ
+      </p>
+    </div>
+    <div class="fcol" style="margin-bottom:14px;">
+      <div class="flabel">מספר הקצאה</div>
+      <input type="text" id="hektzaaNum" placeholder="הזן מספר הקצאה" inputmode="numeric"
+        style="font-size:18px;font-weight:800;text-align:center;letter-spacing:3px;" />
+    </div>
+    <button class="bpurple" onclick="confirmHektzaa()" style="margin-top:0;">✅ אשר ושלח חשבונית</button>
+    <button class="bout" onclick="skipHektzaa()" style="margin-top:8px;color:var(--text3);">המשך ללא מספר הקצאה</button>
+  </div>
+</div>
+<div class="modal-bg" id="editModal">
+  <div class="modal">
+    <button class="mclose" onclick="closeModal('editModal')">✕</button>
+    <h3>✏️ עריכת חשבונית</h3>
+    <input type="hidden" id="editRowId" />
+    <div class="fcol" style="margin-bottom:10px;">
+      <div class="flabel">💰 סכום חשבונית (₪)</div>
+      <input type="number" id="editAmtTotal" placeholder="0.00" inputmode="decimal" />
+    </div>
+    <input type="hidden" id="editAmtBefore" />
+    <div class="clabel" style="margin-top:4px;">תשלום</div>
+    <div class="popts" style="flex-wrap:wrap;gap:6px;">
+      <div class="popt active" id="epo-none"  onclick="setEditPay('')"      style="display:none;"></div>
+      <div class="popt active" id="epo-unpaid" onclick="setEditPay('unpaid')" style="flex:0 0 calc(50% - 3px);">⏳ טרם שולם</div>
+      <div class="popt"        id="epo-cash"   onclick="setEditPay('cash')"   style="flex:0 0 calc(50% - 3px);">💵 מזומן</div>
+      <div class="popt"        id="epo-check"  onclick="setEditPay('check')"  style="flex:0 0 calc(50% - 3px);">📄 צ׳ק</div>
+      <div class="popt"        id="epo-both"   onclick="setEditPay('both')"   style="flex:0 0 calc(50% - 3px);">🔀 מפוצל</div>
+      <div class="popt"        id="epo-bank"   onclick="setEditPay('bank')"   style="flex:1;">🏦 העברה בנקאית</div>
+    </div>
+    <div class="pf" id="epf-cash"><div class="fcol"><div class="flabel">סכום מזומן (₪)</div><input type="number" id="ecAmt" placeholder="0.00" inputmode="decimal" /></div></div>
+    <div class="pf" id="epf-check">
+      <div class="frow">
+        <div class="fcol"><div class="flabel">מספר צ׳ק</div><input type="text" id="ecNum" placeholder="123456" inputmode="numeric" /></div>
+        <div class="fcol"><div class="flabel">סכום (₪)</div><input type="number" id="eckAmt" placeholder="0.00" inputmode="decimal" /></div>
+      </div>
+      <div class="fcol mt8"><div class="flabel">📅 תאריך צ׳ק</div><input type="date" id="ecDate" /></div>
+    </div>
+    <div class="pf" id="epf-both">
+      <div class="fcol" style="margin-bottom:8px;"><div class="flabel">סכום מזומן (₪)</div><input type="number" id="ecAmt2" placeholder="0.00" inputmode="decimal" /></div>
+      <div class="frow">
+        <div class="fcol"><div class="flabel">מספר צ׳ק</div><input type="text" id="ecNum2" placeholder="123456" inputmode="numeric" /></div>
+        <div class="fcol"><div class="flabel">סכום צ׳ק (₪)</div><input type="number" id="eckAmt2" placeholder="0.00" inputmode="decimal" /></div>
+      </div>
+      <div class="fcol mt8"><div class="flabel">📅 תאריך צ׳ק</div><input type="date" id="ecDate2" /></div>
+    </div>
+    <div class="pf" id="epf-bank">
+      <div class="frow">
+        <div class="fcol"><div class="flabel">מספר אסמכתה</div><input type="text" id="ebankRef" placeholder="123456789" inputmode="numeric" /></div>
+        <div class="fcol"><div class="flabel">סכום (₪)</div><input type="number" id="ebankAmt" placeholder="0.00" inputmode="decimal" /></div>
+      </div>
+    </div>
+    <div class="paid-toggle" style="margin-top:12px;">
+      <div class="ptog unpaid active" id="eptog-no"  onclick="setEditPaid(false)">❌ טרם שולם</div>
+      <div class="ptog paid"          id="eptog-yes" onclick="setEditPaid(true)">✅ שולם</div>
+    </div>
+    <button class="bsub mt8" id="saveEditBtn" onclick="saveEdit()" style="margin-top:14px;">
+      <span class="bt">💾 שמור שינויים</span><div class="sp"></div>
+    </button>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
-var UK="inv_url5", SK="inv_sups5";
-var SCRIPT_URL = localStorage.getItem(UK) || "";
+var UK="inv_url5", SK="inv_sups5", CK="inv_cats5", CNK="inv_num5";
+var SCRIPT_URL = localStorage.getItem(UK)||"";
 var sups = JSON.parse(localStorage.getItem(SK)||"[]");
-var pages=[], payMode="", ttm;
-var MAX_PX=900, QUALITY=0.60;
+var supCats = JSON.parse(localStorage.getItem(CK)||"{}");
+var invCounter = parseInt(localStorage.getItem(CNK)||"0")||0;
+function getNextInvNum(){invCounter++;localStorage.setItem(CNK,String(invCounter));return invCounter;}
+var MAX_PX=1400, QUALITY=0.75;
+var pages=[], payMode="", paidStatus=false, editPayMode="", editPaidStatus=false, ttm;
+var HEKTZAA_MIN=11800; // סכום מינימום להקצאה
+var DEFAULT_CATS=["מזון כללי","לחם","חלב","שתיה","סיגריות","ניקיון","בשר ודגים","פירות וירקות","אחר"];
+var CATS=JSON.parse(localStorage.getItem("inv_cats_list5")||JSON.stringify(DEFAULT_CATS));
+function saveCats(){localStorage.setItem("inv_cats_list5",JSON.stringify(CATS));}
+function rndCatSelects(){
+  var selects=["nsCat","renCat","hCatFil"];
+  selects.forEach(function(id){
+    var el=document.getElementById(id);if(!el)return;
+    var cur=el.value,first=el.options[0].outerHTML;
+    el.innerHTML=first;
+    CATS.forEach(function(c){var o=document.createElement("option");o.value=c;o.textContent=c;if(c===cur)o.selected=true;el.appendChild(o);});
+  });
+}
+var VAT=1.18;
 
-// iOS PWA hint
+// PWA hint
 (function(){
   var isIos=/iphone|ipad|ipod/i.test(navigator.userAgent);
-  var isInStandalone=('standalone' in window.navigator) && window.navigator.standalone;
-  if(isIos && !isInStandalone){
-    document.getElementById('pwaHint').style.display='block';
+  var isAnd=/android/i.test(navigator.userAgent);
+  var standalone=window.navigator.standalone||window.matchMedia('(display-mode: standalone)').matches;
+  if(!standalone&&(isIos||isAnd)){
+    var h=document.getElementById('pwaHint');
+    h.style.display='block';
+    h.textContent=isIos?'📲 שתף ← הוסף למסך הבית (לחץ לסגירה)':'📲 תפריט ⋮ ← הוסף למסך הבית (לחץ לסגירה)';
   }
-  // Android PWA hint
-  var isAndroid=/android/i.test(navigator.userAgent);
-  if(isAndroid && !window.matchMedia('(display-mode: standalone)').matches){
-    document.getElementById('pwaHint').style.display='block';
-    document.getElementById('pwaHint').innerHTML='📲 הוסף לסרגל הבית — לחץ על ⋮ תפריט ← <strong>הוסף למסך הבית</strong><span style="display:block;font-size:11px;opacity:.8;margin-top:2px;">לחץ לסגירה</span>';
-  }
-  // Generate canvas icon for Android
   generateIcon();
 })();
 
 function generateIcon(){
   try{
-    var cv=document.createElement("canvas"); cv.width=192; cv.height=192;
+    var cv=document.createElement("canvas");cv.width=192;cv.height=192;
     var ctx=cv.getContext("2d");
-    // רקע סגול עם radius
+    // רקע סגול מלא
     ctx.beginPath();
-    ctx.roundRect(0,0,192,192,38);
-    var grd=ctx.createLinearGradient(0,0,192,192);
-    grd.addColorStop(0,"#6c3eb8"); grd.addColorStop(1,"#8b5cf6");
-    ctx.fillStyle=grd; ctx.fill();
-    // אות מ
+    if(ctx.roundRect)ctx.roundRect(0,0,192,192,38);
+    else ctx.rect(0,0,192,192);
+    ctx.fillStyle="#6c3eb8";ctx.fill();
+    // פס תחתון טורקיז
+    ctx.fillStyle="#0d9488";
+    ctx.fillRect(0,130,192,62);
+    if(ctx.roundRect){
+      ctx.beginPath();ctx.roundRect(0,130,192,62,{lowerLeft:38,lowerRight:38,upperLeft:0,upperRight:0});
+      ctx.fillStyle="#0d9488";ctx.fill();
+    }
+    // אות מ — לבן
     ctx.fillStyle="#ffffff";
-    ctx.font="bold 110px 'Arial Rounded MT Bold', Arial, sans-serif";
-    ctx.textAlign="center"; ctx.textBaseline="middle";
-    ctx.fillText("מ",96,88);
-    // מירב
-    ctx.font="bold 36px 'Arial Rounded MT Bold', Arial, sans-serif";
-    ctx.fillStyle="rgba(255,255,255,0.9)";
-    ctx.fillText("מירב",96,152);
+    ctx.font="900 108px 'Arial Rounded MT Bold',Arial,sans-serif";
+    ctx.textAlign="center";ctx.textBaseline="middle";
+    ctx.fillText("מ",96,82);
+    // מירב — לבן
+    ctx.font="700 38px 'Arial Rounded MT Bold',Arial,sans-serif";
+    ctx.fillStyle="#ffffff";
+    ctx.fillText("מירב",96,156);
     var url=cv.toDataURL("image/png");
-    // עדכן link
-    var lk=document.querySelector("link[rel='apple-touch-icon']");
-    if(lk) lk.href=url;
-    // הוסף android icon
-    var lk2=document.createElement("link");
-    lk2.rel="icon"; lk2.type="image/png"; lk2.sizes="192x192"; lk2.href=url;
+    var lk=document.querySelector("link[rel='apple-touch-icon']");if(lk)lk.href=url;
+    var lk2=document.createElement("link");lk2.rel="icon";lk2.type="image/png";lk2.sizes="192x192";lk2.href=url;
     document.head.appendChild(lk2);
   }catch(e){}
 }
 
-window.addEventListener("DOMContentLoaded", function(){
+window.addEventListener("DOMContentLoaded",function(){
   setToday();
-  if(!SCRIPT_URL){ document.getElementById("setupPage").style.display="block"; }
-  else { startApp(); }
+  if(!SCRIPT_URL){document.getElementById("setupPage").style.display="block";}
+  else{startApp();}
 });
 
 function startApp(){
   document.getElementById("mainApp").style.display="block";
   document.getElementById("setUrl").value=SCRIPT_URL;
+  rndCatSelects();
+  buildCatsList();
   loadSups();
 }
 
 function setToday(){
-  var d=new Date();
-  document.getElementById("dateInp").value=d.getFullYear()+"-"+p2(d.getMonth()+1)+"-"+p2(d.getDate());
+  var d=new Date(),s=d.getFullYear()+"-"+p2(d.getMonth()+1)+"-"+p2(d.getDate());
+  document.getElementById("dateInp").value=s;
 }
-function p2(n){ return String(n).padStart(2,"0"); }
+function p2(n){return String(n).padStart(2,"0");}
+function fmtAmt(n){return Number(n).toLocaleString("he-IL",{minimumFractionDigits:0,maximumFractionDigits:2});}
 
 function saveSetup(){
   var v=document.getElementById("setupUrl").value.trim();
-  if(!v.includes("script.google.com")||!v.includes("/exec")){ toast("URL חייב להסתיים ב /exec","warn"); return; }
-  SCRIPT_URL=v; localStorage.setItem(UK,v);
-  document.getElementById("setupPage").style.display="none";
-  startApp();
+  if(!v.includes("script.google.com")||!v.includes("/exec")){toast("URL חייב להסתיים ב /exec","warn");return;}
+  SCRIPT_URL=v;localStorage.setItem(UK,v);
+  document.getElementById("setupPage").style.display="none";startApp();
 }
 
 function showTab(n){
-  document.querySelectorAll(".page").forEach(function(p){ p.classList.remove("active"); });
-  document.querySelectorAll(".tab").forEach(function(t){ t.classList.remove("active"); });
+  document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active");});
+  document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active");});
   document.getElementById("page-"+n).classList.add("active");
   document.getElementById("tab-"+n).classList.add("active");
   if(n==="history") loadHist();
+  if(n==="reports") initReports();
+  if(n==="pay")     initPayTab();
 }
 
 function setSt(t,m){
@@ -607,305 +1002,1253 @@ function setSt(t,m){
   document.getElementById("sText").textContent=m;
 }
 
-/* ---- API — XHR + JSONP fallback ---- */
-var _cbIdx = 0;
-
-function apiGet(qs, cb, errCb){
-  // נסה XHR קודם (עובד על Safari)
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", SCRIPT_URL + "?" + qs, true);
-  xhr.timeout = 20000;
-  xhr.onload = function(){
-    var t = xhr.responseText.trim();
-    if(t.charAt(0) === "{" || t.charAt(0) === "["){
-      try{ cb(JSON.parse(t)); return; }catch(e){}
-    }
-    // XHR נכשל — נסה JSONP
-    apiGetJsonp(qs, cb, errCb);
+/* ---- API ---- */
+var _cbIdx=0;
+function apiGet(qs,cb,errCb){
+  var xhr=new XMLHttpRequest();
+  xhr.open("GET",SCRIPT_URL+"?"+qs,true);
+  xhr.timeout=20000;
+  xhr.onload=function(){
+    var t=(xhr.responseText||"").trim();
+    if(t.charAt(0)==="{"){try{cb(JSON.parse(t));return;}catch(e){}}
+    apiGetJsonp(qs,cb,errCb);
   };
-  xhr.onerror   = function(){ apiGetJsonp(qs, cb, errCb); };
-  xhr.ontimeout = function(){ apiGetJsonp(qs, cb, errCb); };
+  xhr.onerror=function(){apiGetJsonp(qs,cb,errCb);};
+  xhr.ontimeout=function(){apiGetJsonp(qs,cb,errCb);};
   xhr.send();
 }
-
-function apiGetJsonp(qs, cb, errCb){
-  var cbName = "__apicb" + (++_cbIdx);
-  var t = setTimeout(function(){
-    cleanup(cbName);
-    if(errCb) errCb(new Error("timeout"));
-  }, 20000);
-  window[cbName] = function(d){
-    clearTimeout(t); cleanup(cbName); cb(d);
-  };
-  var s = document.createElement("script");
-  s.src = SCRIPT_URL + "?" + qs + "&callback=" + cbName;
-  s.onerror = function(){
-    clearTimeout(t); cleanup(cbName);
-    if(errCb) errCb(new Error("script error"));
-  };
+function apiGetJsonp(qs,cb,errCb){
+  var nm="__cb"+(++_cbIdx);
+  var t=setTimeout(function(){cleanup(nm);if(errCb)errCb(new Error("timeout"));},20000);
+  window[nm]=function(d){clearTimeout(t);cleanup(nm);cb(d);};
+  var s=document.createElement("script");
+  s.src=SCRIPT_URL+"?"+qs+"&callback="+nm;
+  s.onerror=function(){clearTimeout(t);cleanup(nm);if(errCb)errCb(new Error("error"));};
   document.head.appendChild(s);
 }
-
-function cleanup(name){
-  delete window[name];
-  var old = document.querySelectorAll("script[src*='"+name+"']");
-  old.forEach(function(el){ el.parentNode && el.parentNode.removeChild(el); });
+function cleanup(nm){
+  delete window[nm];
+  document.querySelectorAll("script[src*='"+nm+"']").forEach(function(el){el.parentNode&&el.parentNode.removeChild(el);});
 }
-
-/* POST — XHR ראשי, fallback ל-JSONP */
-function apiPost(data, cb, errCb){
-  var body = JSON.stringify(data);
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", SCRIPT_URL, true);
-  xhr.setRequestHeader("Content-Type", "text/plain;charset=utf-8");
-  xhr.timeout = 60000;
-  xhr.onload = function(){
-    var t = (xhr.responseText||"").trim();
-    if(t.charAt(0) === "{" || t.charAt(0) === "["){
-      try{ cb(JSON.parse(t)); return; }catch(e){}
-    }
-    // תשובה לא תקינה — fallback
-    if(data.pages && data.pages.length){
-      if(errCb) errCb(new Error("POST_BLOCKED"));
-    } else {
-      apiPostViaGet(data, cb, errCb);
-    }
+function apiPost(data,cb,errCb){
+  var xhr=new XMLHttpRequest();
+  xhr.open("POST",SCRIPT_URL,true);
+  xhr.setRequestHeader("Content-Type","text/plain;charset=utf-8");
+  // timeout ארוך יותר לתמונות
+  xhr.timeout=data.pages&&data.pages.length?90000:30000;
+  xhr.onload=function(){
+    var t=(xhr.responseText||"").trim();
+    if(t.charAt(0)==="{"){try{cb(JSON.parse(t));return;}catch(e){}}
+    if(data.pages&&data.pages.length){if(errCb)errCb(new Error("POST_BLOCKED"));}
+    else{apiPostViaGet(data,cb,errCb);}
   };
-  xhr.onerror = function(){
-    if(data.pages && data.pages.length){
-      if(errCb) errCb(new Error("POST_BLOCKED"));
-    } else {
-      apiPostViaGet(data, cb, errCb);
-    }
-  };
-  xhr.ontimeout = function(){
-    if(errCb) errCb(new Error("timeout"));
-  };
-  xhr.send(body);
+  xhr.onerror=function(){if(data.pages&&data.pages.length){if(errCb)errCb(new Error("POST_BLOCKED"));}else{apiPostViaGet(data,cb,errCb);}};
+  xhr.ontimeout=function(){if(errCb)errCb(new Error("timeout"));};
+  xhr.send(JSON.stringify(data));
 }
-
-function apiPostViaGet(data, cb, errCb){
-  var qs = "action=" + encodeURIComponent(data.action||"");
-  if(data.supplier) qs += "&supplier=" + encodeURIComponent(data.supplier);
-  if(data.email)    qs += "&email="    + encodeURIComponent(data.email);
-  if(data.dateFrom) qs += "&dateFrom=" + encodeURIComponent(data.dateFrom);
-  if(data.dateTo)   qs += "&dateTo="   + encodeURIComponent(data.dateTo);
-  apiGet(qs, cb, errCb);
+function apiPostViaGet(data,cb,errCb){
+  var qs="action="+encodeURIComponent(data.action||"");
+  if(data.supplier) qs+="&supplier="+encodeURIComponent(data.supplier);
+  if(data.email)    qs+="&email="+encodeURIComponent(data.email);
+  if(data.dateFrom) qs+="&dateFrom="+encodeURIComponent(data.dateFrom);
+  if(data.dateTo)   qs+="&dateTo="+encodeURIComponent(data.dateTo);
+  if(data.suppliers)qs+="&suppliers="+encodeURIComponent(JSON.stringify(data.suppliers));
+  apiGet(qs,cb,errCb);
 }
 
 /* ---- Suppliers ---- */
+var DELETED_KEY="inv_deleted5";
+var deletedSups=JSON.parse(localStorage.getItem(DELETED_KEY)||"[]");
+
 function loadSups(){
-  setSt("","טוען...");
-  apiGet("action=getSuppliers", function(d){
-    if(d.success){ sups=merge(d.suppliers,sups); localStorage.setItem(SK,JSON.stringify(sups)); }
-    rndSups(); setSt("ok","מחובר ✓");
-  }, function(){ rndSups(); setSt("err","עובד מקומית"); });
+  setSt("","מתחבר...");
+  // timeout קצר לבדיקה ראשונית
+  var xhr=new XMLHttpRequest();
+  xhr.open("GET",SCRIPT_URL+"?action=getSuppliers",true);
+  xhr.timeout=8000;
+  xhr.onload=function(){
+    var t=(xhr.responseText||"").trim();
+    if(t.charAt(0)==="{"){
+      try{
+        var d=JSON.parse(t);
+        if(d.success){
+          // תיקון 3: אל תוסף ספקים שנמחקו מקומית
+          var serverSups=(d.suppliers||[]).filter(function(s){
+            return deletedSups.indexOf(s)===-1;
+          });
+          sups=merge(serverSups,sups);
+          localStorage.setItem(SK,JSON.stringify(sups));
+        }
+        rndSups();setSt("ok","מחובר ✓");return;
+      }catch(e){}
+    }
+    rndSups();setSt("err","עובד מקומית");
+  };
+  xhr.onerror=xhr.ontimeout=function(){rndSups();setSt("err","עובד מקומית");};
+  xhr.send();
+}
+
+/* ---- Supplier search dropdown ---- */
+function toggleSupSearch(){
+  var drop=document.getElementById("supSearchDrop");
+  var btn=document.getElementById("supSearchBtn");
+  var isOpen=drop.classList.contains("open");
+  // סגור כל שאר
+  document.querySelectorAll(".sup-search-drop.open").forEach(function(d){d.classList.remove("open");});
+  document.querySelectorAll(".sup-search-btn.active").forEach(function(b){b.classList.remove("active");});
+  if(!isOpen){
+    drop.classList.add("open");
+    btn.classList.add("active");
+    buildSupDropList("");
+    setTimeout(function(){document.getElementById("supSearchInp").focus();},100);
+  }
+}
+
+function buildSupDropList(q){
+  var list=document.getElementById("supDropList");
+  list.innerHTML="";
+  var cur=document.getElementById("supSel").value;
+  var filtered=q?sups.filter(function(s){return s.indexOf(q)!==-1;}):sups;
+  if(!filtered.length){
+    list.innerHTML='<div style="padding:12px;color:var(--text3);text-align:center;font-size:13px;">לא נמצא ספק</div>';
+    return;
+  }
+  filtered.forEach(function(s){
+    var div=document.createElement("div");
+    div.className="sup-drop-item"+(s===cur?" sel":"");
+    var cat=supCats[s]||"";
+    div.innerHTML='<span>'+esc(s)+'</span>'+(cat?'<span class="sup-cat-badge">'+esc(cat)+'</span>':"");
+    div.onclick=function(){selectSup(s);};
+    list.appendChild(div);
+  });
+}
+
+function filterSupsDrop(q){buildSupDropList(q);}
+
+function selectSup(s){
+  document.getElementById("supSel").value=s;
+  document.getElementById("supSelLabel").textContent=s||"— בחר ספק —";
+  document.getElementById("supSelLabel").style.color=s?"var(--text)":"var(--text3)";
+  document.getElementById("supSearchDrop").classList.remove("open");
+  document.getElementById("supSearchBtn").classList.remove("active");
+  document.getElementById("supSearchInp").value="";
+  onSupChange();
+}
+
+// סגור בלחיצה מחוץ
+document.addEventListener("click",function(e){
+  if(!e.target.closest(".sup-search-wrap")&&!e.target.closest(".msup-wrap")){
+    document.querySelectorAll(".sup-search-drop.open").forEach(function(d){d.classList.remove("open");});
+    document.querySelectorAll(".sup-search-btn.active").forEach(function(b){b.classList.remove("active");});
+    document.querySelectorAll(".msup-drop.open").forEach(function(d){d.classList.remove("open");});
+  }
+});
+
+function filterSups(q){buildSupDropList(q);}  // legacy
+
+function addCategory(){
+  var inp=document.getElementById("newCatInp");
+  var name=(inp.value||"").trim();
+  if(!name){toast("הזן שם קטגוריה","warn");return;}
+  if(CATS.indexOf(name)!==-1){toast("קטגוריה כבר קיימת","warn");return;}
+  // הוסף לפני "אחר"
+  var lastIdx=CATS.indexOf("אחר");
+  if(lastIdx!==-1)CATS.splice(lastIdx,0,name);
+  else CATS.push(name);
+  saveCats();rndCatSelects();buildCatsList();
+  inp.value="";
+  toast("✅ קטגוריה '"+name+"' נוספה","ok");
+}
+
+function deleteCategory(cat){
+  if(!confirm("למחוק קטגוריה '"+cat+"'?"))return;
+  var i=CATS.indexOf(cat);
+  if(i!==-1){CATS.splice(i,1);saveCats();rndCatSelects();buildCatsList();toast("✅ נמחקה","ok");}
+}
+
+function buildCatsList(){
+  var el=document.getElementById("catsList");if(!el)return;
+  el.innerHTML="";
+  CATS.forEach(function(c){
+    var div=document.createElement("div");
+    div.style.cssText="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--s2);border-radius:9px;margin-bottom:6px;border:1px solid var(--border);";
+    div.innerHTML='<span style="font-size:13px;font-weight:700;color:var(--text);">'+esc(c)+'</span>'
+      +'<button onclick="deleteCategory(\''+esc(c)+'\')" style="background:var(--red2);border:none;color:var(--red);font-size:11px;font-weight:700;padding:4px 9px;border-radius:6px;cursor:pointer;">🗑 מחק</button>';
+    el.appendChild(div);
+  });
 }
 
 function rndSups(){
-  ["supSel","hSup","sSup"].forEach(function(id){
-    var el=document.getElementById(id), cur=el.value, f=el.options[0].outerHTML;
+  ["hSup","renOld","delSupSel"].forEach(function(id){
+    var el=document.getElementById(id);if(!el)return;
+    var cur=el.value,f=el.options[0].outerHTML;
     el.innerHTML=f;
-    sups.forEach(function(s){ var o=document.createElement("option"); o.value=s; o.textContent=s; if(s===cur) o.selected=true; el.appendChild(o); });
+    sups.forEach(function(s){var o=document.createElement("option");o.value=s;o.textContent=s;if(s===cur)o.selected=true;el.appendChild(o);});
+  });
+  // עדכן label של כפתור החיפוש
+  var cur=document.getElementById("supSel").value;
+  var lbl=document.getElementById("supSelLabel");
+  if(lbl){lbl.textContent=cur||"— בחר ספק —";lbl.style.color=cur?"var(--text)":"var(--text3)";}
+}
+
+function deleteSupplier(){
+  var s=document.getElementById("delSupSel").value;
+  if(!s){toast("בחר ספק למחיקה","warn");return;}
+  if(!confirm("למחוק את הספק '"+s+"' מהרשימה?\n(הקבצים בגוגל דרייב ישארו)"))return;
+  // שמור ברשימת מחוקים כדי שלא יחזור מהשרת
+  if(deletedSups.indexOf(s)===-1){deletedSups.push(s);localStorage.setItem(DELETED_KEY,JSON.stringify(deletedSups));}
+  var idx=sups.indexOf(s);
+  if(idx!==-1){sups.splice(idx,1);localStorage.setItem(SK,JSON.stringify(sups));}
+  if(supCats[s]){delete supCats[s];localStorage.setItem(CK,JSON.stringify(supCats));}
+  rndSups();
+  toast("✅ ספק '"+s+"' הוסר","ok");
+}
+function showRenCat(){
+  var s=document.getElementById("renOld").value;
+  var el=document.getElementById("renCurCat");
+  if(el&&s&&supCats[s]) el.textContent="קטגוריה נוכחית: "+supCats[s];
+  else if(el) el.textContent="";
+}
+
+/* ---- Dropdown multi-select ---- */
+function toggleMsupDrop(dropId,storeKey,lblId){
+  // סגור כל שאר הדרופדאונים
+  document.querySelectorAll(".msup-drop.open").forEach(function(d){
+    if(d.id!==dropId) d.classList.remove("open");
+  });
+  var drop=document.getElementById(dropId);
+  if(!drop)return;
+  if(!drop.innerHTML) buildMsupDrop(dropId,storeKey,lblId);
+  drop.classList.toggle("open");
+}
+
+function buildMsupDrop(dropId,storeKey,lblId){
+  var drop=document.getElementById(dropId);if(!drop)return;
+  if(!window[storeKey])window[storeKey]=[];
+  var arr=window[storeKey];
+  drop.innerHTML="";
+  // "כולם"
+  var allItem=document.createElement("div");
+  allItem.className="msup-item"+(arr.indexOf("all")!==-1||arr.length===0?" sel":"");
+  var allCk=document.createElement("div");allCk.className="msup-ck";allCk.textContent=(arr.indexOf("all")!==-1||arr.length===0?"✓":"");
+  var allLbl=document.createElement("span");allLbl.textContent="כל הספקים";
+  allItem.appendChild(allCk);allItem.appendChild(allLbl);
+  allItem.onclick=function(){
+    window[storeKey]=[];
+    buildMsupDrop(dropId,storeKey,lblId);
+    updateMsupLbl(storeKey,lblId);
+  };
+  drop.appendChild(allItem);
+  sups.forEach(function(s){
+    var item=document.createElement("div");
+    item.className="msup-item"+(arr.indexOf(s)!==-1?" sel":"");
+    var ck=document.createElement("div");ck.className="msup-ck";ck.textContent=(arr.indexOf(s)!==-1?"✓":"");
+    var lbl=document.createElement("span");lbl.textContent=s;
+    item.appendChild(ck);item.appendChild(lbl);
+    item.onclick=function(e){
+      e.stopPropagation();
+      var a=window[storeKey]||[];
+      var ai=a.indexOf("all");if(ai!==-1)a.splice(ai,1);
+      var idx=a.indexOf(s);
+      if(idx!==-1)a.splice(idx,1);else a.push(s);
+      window[storeKey]=a;
+      buildMsupDrop(dropId,storeKey,lblId);
+      updateMsupLbl(storeKey,lblId);
+    };
+    drop.appendChild(item);
   });
 }
-function merge(a,b){ var m={}; a.concat(b).forEach(function(x){ if(x) m[x]=1; }); return Object.keys(m).sort(); }
 
-function toggleAS(){ document.getElementById("asRow").classList.toggle("open"); }
+function updateMsupLbl(storeKey,lblId){
+  var el=document.getElementById(lblId);if(!el)return;
+  var arr=window[storeKey]||[];
+  if(!arr.length)el.textContent="כל הספקים ▾";
+  else if(arr.length===1)el.textContent=arr[0]+" ▾";
+  else el.textContent=arr.length+" ספקים ▾";
+}
+
+function getSelSups(storeKey){
+  var arr=window[storeKey]||[];
+  if(!arr.length||arr.indexOf("all")!==-1)return["all"];
+  return arr;
+}
+
+// סגור דרופדאונים בלחיצה מחוץ
+document.addEventListener("click",function(e){
+  if(!e.target.closest(".msup-wrap")){
+    document.querySelectorAll(".msup-drop.open").forEach(function(d){d.classList.remove("open");});
+  }
+});
+
+function rndSupsMulti(){} // legacy - no longer needed
+
+function merge(a,b){var m={};a.concat(b).forEach(function(x){if(x)m[x]=1;});return Object.keys(m).sort();}
+function toggleAS(){document.getElementById("asRow").classList.toggle("open");}
 function addSup(){
   var n=document.getElementById("nsInp").value.trim();
-  if(!n) return;
-  if(sups.indexOf(n)!==-1){ toast("ספק כבר קיים","warn"); return; }
-  sups.push(n); sups.sort(); localStorage.setItem(SK,JSON.stringify(sups));
-  rndSups(); document.getElementById("supSel").value=n;
+  var cat=document.getElementById("nsCat").value;
+  var catNew=document.getElementById("nsCatNew").value.trim();
+  if(!n)return;
+  if(sups.indexOf(n)!==-1){toast("ספק כבר קיים","warn");return;}
+  // קטגוריה חדשה גוברת על קיימת
+  var finalCat=catNew||cat;
+  if(catNew&&CATS.indexOf(catNew)===-1){
+    var lastIdx=CATS.indexOf("אחר");
+    if(lastIdx!==-1)CATS.splice(lastIdx,0,catNew);
+    else CATS.push(catNew);
+    saveCats();rndCatSelects();buildCatsList();
+  }
+  sups.push(n);sups.sort();
+  if(finalCat)supCats[n]=finalCat;
+  localStorage.setItem(SK,JSON.stringify(sups));
+  localStorage.setItem(CK,JSON.stringify(supCats));
+  rndSups();
+  // בחר את הספק החדש
+  document.getElementById("supSel").value=n;
+  document.getElementById("supSelLabel").textContent=n;
+  document.getElementById("supSelLabel").style.color="var(--text)";
   document.getElementById("nsInp").value="";
+  document.getElementById("nsCatNew").value="";
   document.getElementById("asRow").classList.remove("open");
-  toast("✅ ספק נוסף","ok"); updSum();
+  toast("✅ ספק נוסף"+(finalCat?" ("+finalCat+")":""),"ok");
+  updSum();
 }
-function onSupChange(){ clrDup(); updSum(); }
+function onSupChange(){clrDup();updSum();updInvNum();}
+
+function getSelSup(){return document.getElementById("supSel").value||"";}
+
+function updInvNum(){
+  var s=document.getElementById("supSel").value;
+  if(!s){document.getElementById("invNumBadge").style.display="none";return;}
+  apiGet("action=getNextInvNum&supplier="+encodeURIComponent(s),function(d){
+    if(d.success){
+      document.getElementById("invNumVal").textContent=d.num;
+      document.getElementById("invNumBadge").style.display="inline-flex";
+    }
+  },function(){});
+}
+
+function fmtDate(d){
+  if(!d) return"—";
+  // אם זה timestamp או תאריך מלא
+  var dt=new Date(d);
+  if(!isNaN(dt.getTime())){
+    return p2(dt.getDate())+"/"+p2(dt.getMonth()+1)+"/"+dt.getFullYear();
+  }
+  // אם זה כבר בפורמט YYYY-MM-DD
+  if(String(d).match(/^\d{4}-\d{2}-\d{2}/)){
+    var parts=String(d).substring(0,10).split("-");
+    return parts[2]+"/"+parts[1]+"/"+parts[0];
+  }
+  return String(d);
+}
 
 /* ---- Payment ---- */
 function setPay(m){
   payMode=m;
-  ["none","cash","check","both"].forEach(function(k){ document.getElementById("po-"+k).classList.toggle("active",k===(m||"none")); });
-  ["cash","check","both"].forEach(function(k){ document.getElementById("pf-"+k).classList.toggle("open",k===m); });
+  ["unpaid","cash","check","both","bank"].forEach(function(k){
+    var el=document.getElementById("po-"+k);
+    if(el) el.classList.toggle("active",k===m);
+  });
+  ["cash","check","both","bank"].forEach(function(k){
+    var el=document.getElementById("pf-"+k);
+    if(el) el.classList.toggle("open",k===m);
+  });
   updSum();
 }
-
-/* ---- Pages / Photos ---- */
-function compress(file, cb){
-  var reader=new FileReader();
-  reader.onload=function(e){
-    var img=new Image();
-    img.onload=function(){
-      var w=img.width, h=img.height;
-      if(w>MAX_PX||h>MAX_PX){
-        if(w>h){ h=Math.round(h*MAX_PX/w); w=MAX_PX; }
-        else   { w=Math.round(w*MAX_PX/h); h=MAX_PX; }
-      }
-      var cv=document.createElement("canvas"); cv.width=w; cv.height=h;
-      cv.getContext("2d").drawImage(img,0,0,w,h);
-      var du=cv.toDataURL("image/jpeg",QUALITY);
-      cb({ b64:du.split(",")[1], mime:"image/jpeg", thumb:du });
-    };
-    img.src=e.target.result;
-  };
-  reader.readAsDataURL(file);
-}
-
-function addPage(inp){
-  if(!inp.files||!inp.files[0]) return;
-  var f=inp.files[0]; inp.value="";
-  compress(f, function(r){ pages.push({b64:r.b64,mime:r.mime,name:f.name,th:r.thumb}); rndPages(); updSum(); });
-}
-function addPages(inp){
-  if(!inp.files) return;
-  var fs=Array.from(inp.files),done=0; inp.value="";
-  fs.forEach(function(f){
-    compress(f, function(r){ pages.push({b64:r.b64,mime:r.mime,name:f.name,th:r.thumb}); done++; if(done===fs.length){ rndPages(); updSum(); } });
+function setEditPay(m){
+  editPayMode=m;
+  ["none","cash","check","both","bank"].forEach(function(k){
+    var el=document.getElementById("epo-"+k);
+    if(el) el.classList.toggle("active",k===(m||"none"));
+  });
+  ["cash","check","both","bank"].forEach(function(k){
+    var el=document.getElementById("epf-"+k);
+    if(el) el.classList.toggle("open",k===m);
   });
 }
+function setPaid(v){
+  paidStatus=v;
+  document.getElementById("ptog-yes").className="ptog paid"+(v?" active":"");
+  document.getElementById("ptog-no").className="ptog unpaid"+((!v)?" active":"");
+}
+function setEditPaid(v){
+  editPaidStatus=v;
+  document.getElementById("eptog-yes").className="ptog paid"+(v?" active":"");
+  document.getElementById("eptog-no").className="ptog unpaid"+((!v)?" active":"");
+}
 
+/* ---- Photos ---- */
+function compress(file,cb){
+  // setTimeout 0 כדי לא לחסום את ה-UI
+  setTimeout(function(){
+    var r=new FileReader();
+    r.onload=function(e){
+      var img=new Image();
+      img.onload=function(){
+        setTimeout(function(){
+          try{
+            var w=img.width,h=img.height;
+            // שמור יחס גובה-רוחב
+            if(w>MAX_PX||h>MAX_PX){
+              if(w>h){h=Math.round(h*MAX_PX/w);w=MAX_PX;}
+              else{w=Math.round(w*MAX_PX/h);h=MAX_PX;}
+            }
+            var cv=document.createElement("canvas");cv.width=w;cv.height=h;
+            cv.getContext("2d").drawImage(img,0,0,w,h);
+            // נסה באיכות גבוהה קודם
+            var du=cv.toDataURL("image/jpeg",QUALITY);
+            // אם גדול מ-800KB — הורד איכות
+            if(du.length>1100000){du=cv.toDataURL("image/jpeg",0.60);}
+            // אם עדיין גדול מ-1.2MB — הורד רזולוציה
+            if(du.length>1650000){
+              var cv2=document.createElement("canvas");
+              cv2.width=Math.round(w*0.7);cv2.height=Math.round(h*0.7);
+              cv2.getContext("2d").drawImage(img,0,0,cv2.width,cv2.height);
+              du=cv2.toDataURL("image/jpeg",0.65);
+            }
+            cb({b64:du.split(",")[1],mime:"image/jpeg",thumb:du});
+          }catch(e){toast("שגיאה בעיבוד תמונה","err");}
+        },50);
+      };
+      img.onerror=function(){toast("לא ניתן לפתוח את התמונה","err");};
+      img.src=e.target.result;
+    };
+    r.onerror=function(){toast("שגיאה בקריאת הקובץ","err");};
+    r.readAsDataURL(file);
+  },10);
+}
+function addPage(inp){if(!inp.files||!inp.files[0])return;var f=inp.files[0];inp.value="";compress(f,function(r){pages.push({b64:r.b64,mime:r.mime,name:f.name,th:r.thumb});rndPages();updSum();});}
+function addPages(inp){if(!inp.files)return;var fs=Array.from(inp.files),done=0;inp.value="";fs.forEach(function(f){compress(f,function(r){pages.push({b64:r.b64,mime:r.mime,name:f.name,th:r.thumb});done++;if(done===fs.length){rndPages();updSum();}});});}
 function rndPages(){
-  var list=document.getElementById("plist"), cnt=document.getElementById("pcnt");
+  var list=document.getElementById("plist"),cnt=document.getElementById("pcnt");
   list.innerHTML="";
-  if(!pages.length){ cnt.style.display="none"; return; }
-  cnt.style.display="block";
-  cnt.textContent="✅ "+pages.length+" דף"+(pages.length>1?" — יאוחדו ל-PDF אחד":"");
+  if(!pages.length){cnt.style.display="none";return;}
+  cnt.style.display="block";cnt.textContent="✅ "+pages.length+" דף"+(pages.length>1?" — יאוחדו ל-PDF":"");
   pages.forEach(function(p,i){
-    var div=document.createElement("div"); div.className="pitem";
-    var th=p.th?'<img class="pthumb" src="'+p.th+'" />':'<div class="pthumb" style="background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:20px;">📄</div>';
+    var div=document.createElement("div");div.className="pitem";
+    var th=p.th?'<img class="pthumb" src="'+p.th+'" />':'<div class="pthumb" style="background:#ede9fe;display:flex;align-items:center;justify-content:center;">📄</div>';
     div.innerHTML=th+'<span class="pname">דף '+(i+1)+'</span><button class="pdel" onclick="rmPage('+i+')">הסר</button>';
     list.appendChild(div);
   });
 }
-function rmPage(i){ pages.splice(i,1); rndPages(); updSum(); }
+function rmPage(i){pages.splice(i,1);rndPages();updSum();}
 
 /* ---- Summary ---- */
 function updSum(){
   var box=document.getElementById("summBox");
-  var s=document.getElementById("supSel").value, d=document.getElementById("digsInp").value, t=document.getElementById("dateInp").value;
-  if(!s&&!d&&!pages.length){ box.classList.remove("show"); return; }
+  var s=document.getElementById("supSel").value,d=document.getElementById("digsInp").value,t=document.getElementById("dateInp").value;
+  var amt=document.getElementById("amtTotal").value;
+  if(!s&&!d&&!pages.length){box.classList.remove("show");return;}
   box.classList.add("show");
   document.getElementById("smS").textContent=s||"—";
   document.getElementById("smD").textContent=d||"—";
   document.getElementById("smT").textContent=t||"—";
+  document.getElementById("smAmt").textContent=amt?"₪"+fmtAmt(amt):"—";
   document.getElementById("smP").textContent=pages.length+" דפים";
   document.getElementById("smPy").textContent=payLbl()||"ללא";
 }
 function payLbl(){
-  if(payMode==="cash") return"מזומן ₪"+(document.getElementById("cAmt").value||"");
+  if(payMode==="unpaid") return"⏳ טרם שולם";
+  if(payMode==="cash")   return"💵 מזומן ₪"+(document.getElementById("cAmt").value||"");
   if(payMode==="check"){
-    var s="צ'ק #"+(document.getElementById("cNum").value||"")+" ₪"+(document.getElementById("ckAmt").value||"");
-    var d=document.getElementById("cDate").value; if(d) s+=" ("+d+")"; return s;
+    var s="📄 צ'ק #"+(document.getElementById("cNum").value||"")+" ₪"+(document.getElementById("ckAmt").value||"");
+    var d=document.getElementById("cDate").value;if(d)s+=" ("+d+")";return s;
   }
   if(payMode==="both"){
-    var s2="מזומן ₪"+(document.getElementById("cAmt2").value||"")+" + צ'ק ₪"+(document.getElementById("ckAmt2").value||"");
-    var d2=document.getElementById("cDate2").value; if(d2) s2+=" ("+d2+")"; return s2;
+    return"🔀 מזומן ₪"+(document.getElementById("cAmt2").value||"")+" + צ'ק ₪"+(document.getElementById("ckAmt2").value||"");
+  }
+  if(payMode==="bank"){
+    return"🏦 העברה #"+(document.getElementById("bankRef").value||"")+" ₪"+(document.getElementById("bankAmt").value||"");
   }
   return"";
 }
-function clrDup(){ document.getElementById("dupW").classList.remove("show"); }
+function clrDup(){document.getElementById("dupW").classList.remove("show");}
 
 /* ---- Submit ---- */
+var _pendingPayload=null;
 function doSubmit(){
-  var s=document.getElementById("supSel").value, d=document.getElementById("digsInp").value, t=document.getElementById("dateInp").value;
-  if(!s)           { toast("יש לבחור ספק","warn"); return; }
-  if(d.length!==4) { toast("יש להזין 4 ספרות","warn"); return; }
-  if(!t)           { toast("יש לבחור תאריך","warn"); return; }
-  if(!pages.length){ toast("יש להוסיף לפחות דף אחד","warn"); return; }
+  var s=document.getElementById("supSel").value;
+  if(!s||s==="— בחר ספק —"){toast("יש לבחור ספק","warn");return;}
+  var d=document.getElementById("digsInp").value;
+  var t=document.getElementById("dateInp").value;
+  if(d.length!==4){toast("יש להזין 4 ספרות","warn");return;}
+  if(!t){toast("יש לבחור תאריך","warn");return;}
+  if(!pages.length){toast("יש להוסיף לפחות דף אחד","warn");return;}
+  var amt=parseFloat(document.getElementById("amtTotal").value)||0;
+  // בדיקת הקצאה — מעל ₪11,800
+  if(amt>=HEKTZAA_MIN){
+    document.getElementById("hektzaaAmt").textContent="₪"+amt.toFixed(2);
+    document.getElementById("hektzaaNum").value="";
+    document.getElementById("hektzaaModal").classList.add("open");
+    _pendingPayload={s:s,d:d,t:t,amt:amt};
+    return;
+  }
+  submitInvoice(s,d,t,amt,"");
+}
+function confirmHektzaa(){
+  var num=document.getElementById("hektzaaNum").value.trim();
+  document.getElementById("hektzaaModal").classList.remove("open");
+  submitInvoice(_pendingPayload.s,_pendingPayload.d,_pendingPayload.t,_pendingPayload.amt,num);
+}
+function skipHektzaa(){
+  document.getElementById("hektzaaModal").classList.remove("open");
+  submitInvoice(_pendingPayload.s,_pendingPayload.d,_pendingPayload.t,_pendingPayload.amt,"");
+}
+function submitInvoice(s,d,t,amt,hektzaaNum){
   setLd(true);
+  var invNum=getNextInvNum();
   var pl={
-    action:"uploadInvoice", supplier:s, digits:d, date:t,
-    pages:     pages.map(function(p){ return p.b64; }),
-    mimeTypes: pages.map(function(p){ return p.mime; }),
-    payment:   payMode,
-    amount:    payMode==="cash"  ? document.getElementById("cAmt").value   : payMode==="check" ? document.getElementById("ckAmt").value  : "",
-    amount2:   payMode==="both"  ? document.getElementById("ckAmt2").value : "",
-    checkNum:  payMode==="check" ? document.getElementById("cNum").value   : "",
-    checkNum2: payMode==="both"  ? document.getElementById("cNum2").value  : "",
-    checkDate: payMode==="check" ? document.getElementById("cDate").value  : "",
-    checkDate2:payMode==="both"  ? document.getElementById("cDate2").value : ""
+    action:"uploadInvoice",supplier:s,digits:d,date:t,
+    invoiceNum:invNum,category:supCats[s]||"",
+    hektzaaNum:hektzaaNum,
+    pages:pages.map(function(p){return p.b64;}),
+    mimeTypes:pages.map(function(p){return p.mime;}),
+    payment:payMode,paid:payMode!=="unpaid"&&payMode!=="",
+    amtTotal:amt?String(amt):"",
+    payAmount:payMode==="cash"?document.getElementById("cAmt").value:
+              payMode==="check"?document.getElementById("ckAmt").value:
+              payMode==="bank"?document.getElementById("bankAmt").value:"",
+    payAmount2:payMode==="both"?document.getElementById("ckAmt2").value:"",
+    checkNum: payMode==="check"?document.getElementById("cNum").value:
+              payMode==="bank"?document.getElementById("bankRef").value:"",
+    checkNum2:payMode==="both"?document.getElementById("cNum2").value:"",
+    checkDate: payMode==="check"?document.getElementById("cDate").value:"",
+    checkDate2:payMode==="both"?document.getElementById("cDate2").value:""
   };
-  apiPost(pl, function(r){
+  apiPost(pl,function(r){
     setLd(false);
-    if(r.success)       { toast("✅ נשמר ב-Drive!","ok"); reset(); }
-    else if(r.duplicate){ document.getElementById("dupW").classList.add("show"); toast("כפילות — חשבונית זו קיימת!","warn"); }
-    else                { toast(r.error||"שגיאה","err"); }
-  }, function(e){
-    setLd(false);
-    if(e && e.message === "POST_BLOCKED"){
-      toast("❌ Apps Script חוסם — בדוק הגדרות Deploy","err");
-    } else {
-      toast("❌ לא מחובר — בדוק URL בהגדרות","err");
+    if(r.success){
+      var msg="✅ נשמר! #"+invNum;
+      if(hektzaaNum)msg+=" | הקצאה: "+hektzaaNum;
+      toast(msg,"ok");reset();
     }
+    else if(r.duplicate){invCounter--;localStorage.setItem(CNK,String(invCounter));document.getElementById("dupW").classList.add("show");toast("⚠️ כפילות!","warn");}
+    else{invCounter--;localStorage.setItem(CNK,String(invCounter));toast(r.error||"שגיאה","err");}
+  },function(e){
+    invCounter--;localStorage.setItem(CNK,String(invCounter));
+    setLd(false);
+    toast(e&&e.message==="timeout"?"⏱ פג זמן — נסה שוב":"❌ שגיאת חיבור","err");
   });
 }
-function setLd(on){ var b=document.getElementById("subBtn"); b.classList.toggle("loading",on); b.disabled=on; }
+function setLd(on){var b=document.getElementById("subBtn");b.classList.toggle("loading",on);b.disabled=on;}
 function reset(){
-  document.getElementById("supSel").value=""; document.getElementById("digsInp").value="";
-  setToday(); pages=[]; rndPages(); setPay(""); clrDup();
+  document.getElementById("supSel").value="";
+  document.getElementById("digsInp").value="";
+  document.getElementById("amtTotal").value="";
+  document.getElementById("invNumBadge").style.display="none";
+  setToday();pages=[];rndPages();setPay("unpaid");clrDup();
   document.getElementById("summBox").classList.remove("show");
-  ["cAmt","cNum","ckAmt","cDate","cAmt2","ckAmt2","cNum2","cDate2"].forEach(function(id){ document.getElementById(id).value=""; });
+  ["cAmt","cNum","ckAmt","cDate","cAmt2","ckAmt2","cNum2","cDate2","bankRef","bankAmt"].forEach(function(id){
+    var el=document.getElementById(id);if(el)el.value="";
+  });
 }
 
 /* ---- History ---- */
 function loadHist(){
-  var s=document.getElementById("hSup").value, f=document.getElementById("hFrom").value, t=document.getElementById("hTo").value;
+  var s=document.getElementById("hSup").value,f=document.getElementById("hFrom").value,t=document.getElementById("hTo").value;
+  var pf=document.getElementById("hPaid").value,cat=document.getElementById("hCat").value;
   document.getElementById("invList").innerHTML='<div class="iempty">⏳ טוען...</div>';
-  apiGet("action=getInvoices&supplier="+encodeURIComponent(s)+"&dateFrom="+encodeURIComponent(f)+"&dateTo="+encodeURIComponent(t), function(d){
-    if(!d.success||!d.invoices.length){ document.getElementById("invList").innerHTML='<div class="iempty">📭<br>אין חשבוניות לסינון זה</div>'; return; }
-    var list=document.getElementById("invList"); list.innerHTML="";
+  document.getElementById("histStats").style.display="none";
+  apiGet("action=getInvoices&supplier="+encodeURIComponent(s)+"&dateFrom="+encodeURIComponent(f)+"&dateTo="+encodeURIComponent(t)+"&paidFilter="+encodeURIComponent(pf)+"&category="+encodeURIComponent(cat),function(d){
+    if(!d.success||!d.invoices||!d.invoices.length){
+      document.getElementById("invList").innerHTML='<div class="iempty">📭<br>אין חשבוניות לסינון זה</div>';
+      return;
+    }
+    // stats
+    var total=d.invoices.length,sumAmt=0,paid=0,unpaid=0;
     d.invoices.forEach(function(inv){
-      var div=document.createElement("div"); div.className="icard";
-      div.innerHTML='<div class="itop"><span class="isup">'+esc(inv.supplier)+'</span><span class="idate">'+esc(inv.date)+'</span></div><div class="idigs">ספרות: <strong>'+esc(inv.digits)+'</strong></div>'+(inv.payment?'<div><span class="ipay">'+esc(inv.payment)+'</span></div>':"");
-      div.onclick=function(){ if(inv.fileUrl) window.open(inv.fileUrl,"_blank"); };
+      sumAmt+=parseFloat(inv.amtTotal)||0;
+      if(inv.paid==="true"||inv.paid===true)paid++;else unpaid++;
+    });
+    document.getElementById("histStats").style.display="grid";
+    document.getElementById("stTotal").textContent=total;
+    document.getElementById("stSum").textContent="₪"+fmtAmt(sumAmt);
+    document.getElementById("stPaid").textContent=paid;
+    document.getElementById("stUnpaid").textContent=unpaid;
+
+    var list=document.getElementById("invList");list.innerHTML="";
+    d.invoices.forEach(function(inv){
+      // תיקון 11: paid נכון — אם יש תשלום זה שולם
+      var isPaid=inv.paid==="true"||inv.paid===true||(inv.payment&&inv.payment!=="");
+      var div=document.createElement("div");div.className="icard";
+      var top='<div class="itop"><span class="isup">'+esc(inv.supplier)+'</span><span class="idate">'+fmtDate(inv.date)+'</span></div>';
+      var mid='<div class="idigs">ספרות: <strong>'+esc(inv.digits)+'</strong>';
+      // תיקון 9: מספר חשבונית בולט
+      if(inv.invNum) mid+=' <span class="inum" style="background:var(--purple);color:#fff;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:900;margin-right:4px;">#'+esc(inv.invNum)+'</span>';
+      mid+='</div>';
+      var bot='<div style="margin-top:6px;display:flex;align-items:center;flex-wrap:wrap;gap:5px;">';
+      if(inv.amtTotal) bot+='<span class="iamt">₪'+fmtAmt(inv.amtTotal)+'</span>';
+      if(inv.payment)  bot+='<span class="ipay">'+esc(inv.payment)+'</span>';
+      if(inv.category) bot+='<span class="icat">'+esc(inv.category)+'</span>';
+      bot+='<span class="ipaid '+(isPaid?"yes":"no")+'">'+(isPaid?"✅ שולם":"❌ לא שולם")+'</span>';
+      bot+='</div>';
+      var btns='<div class="ibtns">';
+      btns+='<button class="ibtn edit" onclick="openEdit(\''+esc(inv.rowId)+'\',\''+esc(inv.payment)+'\',\''+esc(inv.amount)+'\',\''+esc(inv.amount2)+'\',\''+esc(inv.checkNum)+'\',\''+esc(inv.checkNum2)+'\',\''+esc(inv.checkDate)+'\',\''+esc(inv.checkDate2)+'\',\''+(isPaid?"1":"0")+'\',\''+esc(inv.amtBefore||"")+'\',\''+esc(inv.amtTotal||"")+'\')">✏️ עריכה</button>';
+      if(inv.fileUrl) btns+='<button class="ibtn open" onclick="window.open(\''+inv.fileUrl+'\',\'_blank\')">📂 פתח</button>';
+      if(!isPaid) btns+='<button class="ibtn pay" onclick="markPaid(\''+esc(inv.rowId)+'\')">💳 שלמתי</button>';
+      btns+='</div>';
+      div.innerHTML=top+mid+bot+btns;
       list.appendChild(div);
     });
-  }, function(){ document.getElementById("invList").innerHTML='<div class="iempty">שגיאת חיבור</div>'; });
+  },function(){document.getElementById("invList").innerHTML='<div class="iempty">שגיאת חיבור</div>';});
 }
-function esc(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+
+function markPaid(rowId){
+  // פתח מודל עריכה עם מיקוד על תשלום
+  openEdit(rowId,"","","","","","","","0","","");
+  // גלול לאזור התשלום
+  setTimeout(function(){
+    var el=document.getElementById("epo-cash");
+    if(el) el.scrollIntoView({behavior:"smooth",block:"center"});
+  },300);
+}
+
+/* ---- Edit Modal ---- */
+function openEdit(rowId,payment,amount,amount2,checkNum,checkNum2,checkDate,checkDate2,paid,amtBefore,amtTotal){
+  document.getElementById("editRowId").value=rowId;
+  document.getElementById("editAmtBefore").value=amtBefore||"";
+  document.getElementById("editAmtTotal").value=amtTotal||"";
+  setEditPay(payment||"");
+  setEditPaid(paid==="1");
+  document.getElementById("ecAmt").value=amount||"";
+  document.getElementById("ecNum").value=checkNum||"";
+  document.getElementById("eckAmt").value=amount||"";
+  document.getElementById("ecDate").value=checkDate||"";
+  document.getElementById("ecAmt2").value=amount||"";
+  document.getElementById("ecNum2").value=checkNum2||"";
+  document.getElementById("eckAmt2").value=amount2||"";
+  document.getElementById("ecDate2").value=checkDate2||"";
+  document.getElementById("editModal").classList.add("open");
+}
+function closeModal(id){document.getElementById(id).classList.remove("open");}
+
+function saveEdit(){
+  var rowId=document.getElementById("editRowId").value;
+  var btn=document.getElementById("saveEditBtn");
+  btn.classList.add("loading");btn.disabled=true;
+  var pl={
+    action:"updatePayment",rowId:rowId,paid:editPaidStatus,
+    payment:editPayMode,
+    amtBefore:"",
+    amtTotal:document.getElementById("editAmtTotal").value||"",
+    payAmount:editPayMode==="cash"?document.getElementById("ecAmt").value:
+              editPayMode==="check"?document.getElementById("eckAmt").value:
+              editPayMode==="bank"?document.getElementById("ebankAmt").value:"",
+    payAmount2:editPayMode==="both"?document.getElementById("eckAmt2").value:"",
+    checkNum: editPayMode==="check"?document.getElementById("ecNum").value:
+              editPayMode==="bank"?document.getElementById("ebankRef").value:"",
+    checkNum2:editPayMode==="both"?document.getElementById("ecNum2").value:"",
+    checkDate: editPayMode==="check"?document.getElementById("ecDate").value:"",
+    checkDate2:editPayMode==="both"?document.getElementById("ecDate2").value:""
+  };
+  apiPost(pl,function(r){
+    btn.classList.remove("loading");btn.disabled=false;
+    if(r.success){toast("✅ עודכן","ok");closeModal("editModal");loadHist();}
+    else toast(r.error||"שגיאה","err");
+  },function(){btn.classList.remove("loading");btn.disabled=false;toast("שגיאת חיבור","err");});
+}
+
+/* ---- Reports ---- */
+function initReports(){
+  // dropdowns נבנים בלחיצה ראשונה
+}
+function showRep(n){
+  document.querySelectorAll(".rpanel").forEach(function(p){p.classList.remove("active");});
+  document.querySelectorAll(".rtab").forEach(function(t){t.classList.remove("active");});
+  document.getElementById("rep-"+n).classList.add("active");
+  document.querySelectorAll(".rtab").forEach(function(t){if(t.textContent.includes(n==="summary"?"סיכום":n==="paid"?"שולם":n==="weekly"?"שבועי":n==="compare"?"השוואה":"קטגוריות"))t.classList.add("active");});
+}
+
+function runReport(type){
+  var out=document.getElementById("rep-"+type+"-out");
+  out.innerHTML='<div class="iempty" style="padding:20px;">⏳ טוען...</div>';
+  var sups,from,to;
+  if(type==="summary"){sups=getSelSups("rSups");from=document.getElementById("rFrom").value;to=document.getElementById("rTo").value;}
+  else if(type==="paid"){sups=getSelSups("rSups2");from=document.getElementById("rFrom2").value;to=document.getElementById("rTo2").value;}
+  else if(type==="weekly"){sups=getSelSups("rSups3");from=document.getElementById("rFrom3").value;to=document.getElementById("rTo3").value;}
+  else if(type==="compare"){sups=getSelSups("rSups4");from=document.getElementById("cFrom1").value;to=document.getElementById("cTo1").value;}
+  else if(type==="category"){from=document.getElementById("rFrom5").value;to=document.getElementById("rTo5").value;sups=["all"];}
+
+  apiGet("action=getInvoices&supplier=all&dateFrom="+encodeURIComponent(from)+"&dateTo="+encodeURIComponent(to),function(d){
+    if(!d.success){out.innerHTML='<div class="iempty">שגיאת חיבור</div>';return;}
+    var invs=d.invoices||[];
+    // filter by suppliers
+    if(sups.indexOf("all")===-1){invs=invs.filter(function(i){return sups.indexOf(i.supplier)!==-1;});}
+
+    if(type==="summary")      renderSummary(out,invs);
+    else if(type==="paid")    renderPaid(out,invs);
+    else if(type==="weekly")  renderWeekly(out,invs);
+    else if(type==="compare") renderCompare(out,invs,from,to);
+    else if(type==="category")renderCategory(out,invs);
+  },function(){out.innerHTML='<div class="iempty">שגיאת חיבור</div>';});
+}
+
+function renderSummary(out,invs){
+  var bySupplier={};
+  var byPayment={cash:0,check:0,bank:0,unpaid:0};
+  var byPaymentAmt={cash:0,check:0,bank:0,unpaid:0};
+  invs.forEach(function(i){
+    if(!bySupplier[i.supplier])bySupplier[i.supplier]={count:0,sum:0,paid:0,unpaid:0};
+    bySupplier[i.supplier].count++;
+    var amt=parseFloat(i.amtTotal)||0;
+    bySupplier[i.supplier].sum+=amt;
+    var isPaid=i.paid==="true"||i.paid===true||(i.payment&&i.payment!==""&&i.payment!=="טרם שולם");
+    if(isPaid)bySupplier[i.supplier].paid++;else bySupplier[i.supplier].unpaid++;
+    // אמצעי תשלום
+    var pm=String(i.payment||"");
+    if(!isPaid||pm==="טרם שולם"){byPayment.unpaid++;byPaymentAmt.unpaid+=amt;}
+    else if(pm.indexOf("מזומן")!==-1&&pm.indexOf("צ")!==-1){byPayment.cash++;byPaymentAmt.cash+=amt;} // both
+    else if(pm.indexOf("מזומן")!==-1){byPayment.cash++;byPaymentAmt.cash+=amt;}
+    else if(pm.indexOf("צ'ק")!==-1||pm.indexOf("צק")!==-1){byPayment.check++;byPaymentAmt.check+=amt;}
+    else if(pm.indexOf("העברה")!==-1){byPayment.bank++;byPaymentAmt.bank+=amt;}
+    else{byPayment.cash++;byPaymentAmt.cash+=amt;}
+  });
+  var totalSum=invs.reduce(function(a,i){return a+(parseFloat(i.amtTotal)||0);},0);
+  var totalPaid=invs.filter(function(i){return i.paid==="true"||i.paid===true||(i.payment&&i.payment!==""&&i.payment!=="טרם שולם");}).length;
+  var html='';
+
+  // כרטיסי סיכום
+  html+='<div class="card" style="margin-top:10px;">';
+  html+='<div class="clabel">סיכום כללי</div>';
+  html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">';
+  html+='<div style="background:var(--purple3);border-radius:12px;padding:12px;text-align:center;"><div style="font-size:22px;font-weight:900;color:var(--purple);">'+invs.length+'</div><div style="font-size:10px;color:var(--text3);">חשבוניות</div></div>';
+  html+='<div style="background:var(--gold2);border-radius:12px;padding:12px;text-align:center;"><div style="font-size:16px;font-weight:900;color:var(--gold);">₪'+fmtAmt(totalSum)+'</div><div style="font-size:10px;color:var(--text3);">סה"כ</div></div>';
+  html+='<div style="background:var(--green2);border-radius:12px;padding:12px;text-align:center;"><div style="font-size:22px;font-weight:900;color:var(--green);">'+totalPaid+'</div><div style="font-size:10px;color:var(--text3);">שולמו</div></div>';
+  html+='<div style="background:var(--red2);border-radius:12px;padding:12px;text-align:center;"><div style="font-size:22px;font-weight:900;color:var(--red);">'+(invs.length-totalPaid)+'</div><div style="font-size:10px;color:var(--text3);">לא שולמו</div></div>';
+  html+='</div>';
+
+  // גרף עמודות לפי אמצעי תשלום
+  html+='<div class="clabel">אמצעי תשלום</div>';
+  var payTypes=[
+    {k:"cash",  lbl:"💵 מזומן",  color:"#16a34a"},
+    {k:"check", lbl:"📄 צ׳ק",   color:"#2563eb"},
+    {k:"bank",  lbl:"🏦 העברה", color:"#0d9488"},
+    {k:"unpaid",lbl:"⏳ טרם",   color:"#dc2626"}
+  ];
+  var maxAmt=Math.max.apply(null,payTypes.map(function(p){return byPaymentAmt[p.k]||0;}))||1;
+  payTypes.forEach(function(p){
+    var amt=byPaymentAmt[p.k]||0;
+    var cnt=byPayment[p.k]||0;
+    if(!cnt)return;
+    var pct=((amt/maxAmt)*100).toFixed(0);
+    html+='<div style="margin-bottom:8px;">';
+    html+='<div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700;color:var(--text2);margin-bottom:3px;">';
+    html+='<span>'+p.lbl+' ('+cnt+')</span><span>₪'+fmtAmt(amt)+'</span></div>';
+    html+='<div style="background:var(--s2);border-radius:6px;height:16px;overflow:hidden;">';
+    html+='<div style="width:'+pct+'%;height:100%;background:'+p.color+';border-radius:6px;transition:width .6s ease;"></div></div>';
+    html+='</div>';
+  });
+  html+='</div>';
+
+  // טבלת ספקים
+  html+='<div class="card"><div class="clabel">פירוט לפי ספק</div>';
+  html+='<table class="rtbl"><tr><th>ספק</th><th>חשב׳</th><th>₪ סה"כ</th><th>שולם</th></tr>';
+  Object.keys(bySupplier).sort().forEach(function(s){
+    var b=bySupplier[s];
+    html+='<tr><td>'+esc(s)+'</td><td>'+b.count+'</td><td>₪'+fmtAmt(b.sum)+'</td>';
+    html+='<td><span style="color:var(--green);font-weight:700;">'+b.paid+'</span>/<span style="color:var(--red);">'+b.unpaid+'</span></td></tr>';
+  });
+  html+='<tr class="total"><td>סה"כ</td><td>'+invs.length+'</td><td>₪'+fmtAmt(totalSum)+'</td><td></td></tr>';
+  html+='</table></div>';
+  out.innerHTML=html;
+}
+
+function renderPaid(out,invs){
+  var paid=invs.filter(function(i){return i.paid==="true"||i.paid===true;});
+  var unpaid=invs.filter(function(i){return i.paid!=="true"&&i.paid!==true;});
+  var paidSum=paid.reduce(function(a,i){return a+(parseFloat(i.amtTotal)||0);},0);
+  var unpaidSum=unpaid.reduce(function(a,i){return a+(parseFloat(i.amtTotal)||0);},0);
+  var html='<div class="card green"><div class="clabel">✅ שולמו ('+paid.length+')</div>';
+  html+='<table class="rtbl"><tr><th>ספק</th><th>תאריך</th><th>סכום</th></tr>';
+  paid.forEach(function(i){html+='<tr><td>'+esc(i.supplier)+'</td><td>'+fmtDate(i.date)+'</td><td>₪'+fmtAmt(i.amtTotal||0)+'</td></tr>';});
+  html+='<tr class="total"><td colspan="2">סה"כ שולם</td><td>₪'+fmtAmt(paidSum)+'</td></tr></table></div>';
+  html+='<div class="card" style="border-right:4px solid var(--red);margin-top:10px;"><div class="clabel" style="color:var(--red);">❌ לא שולמו ('+unpaid.length+')</div>';
+  html+='<table class="rtbl"><tr><th>ספק</th><th>תאריך</th><th>סכום</th></tr>';
+  unpaid.forEach(function(i){html+='<tr><td>'+esc(i.supplier)+'</td><td>'+fmtDate(i.date)+'</td><td>₪'+fmtAmt(i.amtTotal||0)+'</td></tr>';});
+  html+='<tr class="total"><td colspan="2">סה"כ חוב</td><td style="color:var(--red);">₪'+fmtAmt(unpaidSum)+'</td></tr></table></div>';
+  out.innerHTML=html;
+}
+
+function renderWeekly(out,invs){
+  var weeks={};
+  invs.forEach(function(i){
+    var d=new Date(i.date),day=d.getDay(),diff=d.getDate()-day+(day===0?-6:1);
+    var mon=new Date(d.setDate(diff)),wk=mon.toISOString().split("T")[0];
+    if(!weeks[wk])weeks[wk]={count:0,sum:0};
+    weeks[wk].count++;weeks[wk].sum+=parseFloat(i.amtTotal)||0;
+  });
+  var html='<div class="card teal"><div class="clabel">📅 דוח שבועי</div>';
+  html+='<table class="rtbl"><tr><th>שבוע מ-</th><th>חשבוניות</th><th>סה"כ ₪</th></tr>';
+  Object.keys(weeks).sort().forEach(function(w){
+    html+='<tr><td>'+w+'</td><td>'+weeks[w].count+'</td><td>₪'+fmtAmt(weeks[w].sum)+'</td></tr>';
+  });
+  html+='</table></div>';
+  out.innerHTML=html||'<div class="iempty">אין נתונים</div>';
+}
+
+function renderCompare(out,invs,from1,to1){
+  var from2=document.getElementById("cFrom2").value,to2=document.getElementById("cTo2").value;
+  var p1=invs.filter(function(i){return i.date>=from1&&i.date<=to1;});
+  var p2=invs.filter(function(i){return i.date>=from2&&i.date<=to2;});
+  var s1=p1.reduce(function(a,i){return a+(parseFloat(i.amtTotal)||0);},0);
+  var s2=p2.reduce(function(a,i){return a+(parseFloat(i.amtTotal)||0);},0);
+  var diff=s2-s1,pct=s1>0?((diff/s1)*100).toFixed(1):0;
+  var html='<div class="card gold"><div class="clabel">🔀 השוואת תקופות</div>';
+  html+='<table class="rtbl">';
+  html+='<tr><th>תקופה</th><th>חשבוניות</th><th>סה"כ ₪</th></tr>';
+  html+='<tr><td>'+(from1||"—")+'–'+(to1||"—")+'</td><td>'+p1.length+'</td><td>₪'+fmtAmt(s1)+'</td></tr>';
+  html+='<tr><td>'+(from2||"—")+'–'+(to2||"—")+'</td><td>'+p2.length+'</td><td>₪'+fmtAmt(s2)+'</td></tr>';
+  html+='<tr class="total"><td>הפרש</td><td>'+(p2.length-p1.length)+'</td><td style="color:'+(diff>=0?"var(--red)":"var(--green)")+';">'+(diff>=0?"+":"")+fmtAmt(diff)+' ('+pct+'%)</td></tr>';
+  html+='</table></div>';
+  out.innerHTML=html;
+}
+
+function renderCategory(out,invs){
+  var cats={};
+  invs.forEach(function(i){
+    var c=i.category||"ללא קטגוריה";
+    if(!cats[c])cats[c]={count:0,sum:0};
+    cats[c].count++;cats[c].sum+=parseFloat(i.amtTotal)||0;
+  });
+  var total=invs.reduce(function(a,i){return a+(parseFloat(i.amtTotal)||0);},0);
+  var html='<div class="card coral"><div class="clabel">🏷 פילוח קטגוריות</div>';
+  html+='<table class="rtbl"><tr><th>קטגוריה</th><th>חשבוניות</th><th>סה"כ ₪</th><th>%</th></tr>';
+  Object.keys(cats).sort(function(a,b){return cats[b].sum-cats[a].sum;}).forEach(function(c){
+    var pct=total>0?((cats[c].sum/total)*100).toFixed(1):"0";
+    html+='<tr><td>'+esc(c)+'</td><td>'+cats[c].count+'</td><td>₪'+fmtAmt(cats[c].sum)+'</td><td>'+pct+'%</td></tr>';
+  });
+  html+='<tr class="total"><td>סה"כ</td><td>'+invs.length+'</td><td>₪'+fmtAmt(total)+'</td><td>100%</td></tr>';
+  html+='</table></div>';
+  out.innerHTML=html;
+}
 
 /* ---- Send ---- */
+function getSendSups(){return getSelSups("sSups");}
+
 function sendEmail(){
   var em=document.getElementById("emailInp").value.trim();
-  if(!em){ toast("יש להזין מייל","warn"); return; }
-  var res=document.getElementById("eRes"); res.className="sres show"; res.textContent="⏳ שולח...";
-  apiPost({action:"sendReport",email:em,supplier:document.getElementById("sSup").value,dateFrom:document.getElementById("sFrom").value,dateTo:document.getElementById("sTo").value},
-    function(d){ if(d.success){ res.textContent="✅ "+d.message; toast("✅ נשלח","ok"); } else { res.className="sres show err"; res.textContent="❌ "+(d.error||"שגיאה"); } },
-    function(){ res.className="sres show err"; res.textContent="❌ שגיאת חיבור"; });
-}
-function sendWA(){
-  var ph=document.getElementById("waInp").value.trim().replace(/\D/g,"");
-  if(!ph){ toast("יש להזין מספר","warn"); return; }
-  var s=document.getElementById("sSup").value, f=document.getElementById("sFrom").value, t=document.getElementById("sTo").value;
-  apiGet("action=getInvoices&supplier="+encodeURIComponent(s)+"&dateFrom="+encodeURIComponent(f)+"&dateTo="+encodeURIComponent(t), function(d){
-    if(!d.success||!d.invoices.length){ toast("אין חשבוניות לסינון זה","warn"); return; }
-    var msg="דוח חשבוניות 🧾\nספק: "+(s==="all"?"כל הספקים":s)+"\nתקופה: "+(f||"—")+" עד "+(t||"—")+"\nסה״כ: "+d.invoices.length+" חשבוניות\n\n";
-    d.invoices.forEach(function(inv,i){ msg+=(i+1)+". "+inv.supplier+" | "+inv.digits+" | "+inv.date+(inv.payment?" | "+inv.payment:"")+"\n"+inv.fileUrl+"\n\n"; });
-    window.open("https://wa.me/"+ph+"?text="+encodeURIComponent(msg),"_blank");
-  }, function(){ toast("שגיאת חיבור","err"); });
+  if(!em){toast("יש להזין מייל","warn");return;}
+  var btn=document.querySelector("#page-send .bgreen");
+  btn.textContent="⏳ שולח...";btn.disabled=true;
+  var res=document.getElementById("eRes");res.className="sres show";res.textContent="⏳ שולח...";
+  var sups=getSendSups();
+  apiPost({action:"sendReport",email:em,suppliers:sups,dateFrom:document.getElementById("sFrom").value,dateTo:document.getElementById("sTo").value},
+    function(d){
+      btn.textContent="📧 שלח דוח במייל";btn.disabled=false;
+      if(d.success){res.textContent="✅ "+d.message;toast("✅ נשלח","ok");}
+      else{res.className="sres show err";res.textContent="❌ "+(d.error||"שגיאה");}
+    },
+    function(){
+      btn.textContent="📧 שלח דוח במייל";btn.disabled=false;
+      res.className="sres show err";res.textContent="❌ שגיאת חיבור";
+    });
 }
 
-/* ---- Settings ---- */
+function sendWA(){
+  var ph=document.getElementById("waInp").value.trim().replace(/\D/g,"");
+  if(!ph){toast("יש להזין מספר","warn");return;}
+  if(ph.startsWith("0"))ph="972"+ph.substring(1);
+  var btn=document.querySelector("#page-send .bwa");
+  btn.innerHTML="⏳ טוען...";btn.disabled=true;
+  var sendSups=getSendSups();
+  var f=document.getElementById("sFrom").value;
+  var t=document.getElementById("sTo").value;
+  var supParam=sendSups.indexOf("all")!==-1?"all":sendSups.join(",");
+  // אם אין תאריכים — שלח בלי סינון תאריך
+  var qs="action=getInvoices&supplier="+encodeURIComponent(supParam);
+  if(f) qs+="&dateFrom="+encodeURIComponent(f);
+  if(t) qs+="&dateTo="+encodeURIComponent(t);
+  apiGet(qs,function(d){
+    btn.innerHTML="<span>📱</span> שלח בוואטסאפ";btn.disabled=false;
+    if(!d.success){toast("שגיאת שרת: "+(d.error||""),"err");return;}
+    var invs=d.invoices||[];
+    if(!invs.length){toast("אין חשבוניות לסינון זה","warn");return;}
+    var totalAmt=invs.reduce(function(a,i){return a+(parseFloat(i.amtTotal)||0);},0);
+    var msg="*דוח חשבוניות מירב* 🧾\n";
+    msg+="ספקים: "+(supParam==="all"?"כולם":supParam)+"\n";
+    if(f||t) msg+="תקופה: "+(f||"—")+" עד "+(t||"—")+"\n";
+    msg+="סה\"כ: "+invs.length+" חשבוניות | ₪"+fmtAmt(totalAmt)+"\n\n";
+    invs.forEach(function(inv,i){
+      var isPaid=inv.paid===true||inv.paid==="true"||(inv.payment&&inv.payment!==""&&inv.payment!=="טרם שולם");
+      msg+=(i+1)+". "+inv.supplier;
+      if(inv.invNum)msg+=" #"+inv.invNum;
+      msg+=" | "+fmtDate(inv.date);
+      if(inv.amtTotal)msg+=" | ₪"+fmtAmt(inv.amtTotal);
+      msg+=" | "+(isPaid?"✅ שולם":"❌ לא שולם");
+      if(isPaid&&inv.payment&&inv.payment!=="טרם שולם")msg+=" ("+inv.payment+")";
+      msg+="\n";
+    });
+    var url="https://wa.me/"+ph+"?text="+encodeURIComponent(msg);
+    window.open(url,"_blank");
+  },function(){
+    btn.innerHTML="<span>📱</span> שלח בוואטסאפ";btn.disabled=false;
+    toast("שגיאת חיבור","err");
+  });
+}
+
+/* ---- Print Report ---- */
+function printReport(){
+  var sendSups=getSendSups();
+  var f=document.getElementById("sFrom").value;
+  var t=document.getElementById("sTo").value;
+  var supParam=sendSups.indexOf("all")!==-1?"all":sendSups.join(",");
+  var qs="action=getInvoices&supplier="+encodeURIComponent(supParam);
+  if(f)qs+="&dateFrom="+encodeURIComponent(f);
+  if(t)qs+="&dateTo="+encodeURIComponent(t);
+  toast("⏳ מכין דוח...","");
+  apiGet(qs,function(d){
+    if(!d.success||!d.invoices||!d.invoices.length){toast("אין חשבוניות","warn");return;}
+    var invs=d.invoices;
+    var totalAmt=invs.reduce(function(a,i){return a+(parseFloat(i.amtTotal)||0);},0);
+    var totalPaid=invs.filter(function(i){return i.paid===true||i.paid==="true"||(i.payment&&i.payment!=="טרם שולם");}).length;
+    var html='<!DOCTYPE html><html lang="he" dir="rtl"><head><meta charset="UTF-8">';
+    html+='<title>דוח חשבוניות מירב</title>';
+    html+='<style>';
+    html+='body{font-family:Arial,sans-serif;margin:20px;color:#1e1040;direction:rtl;}';
+    html+='h1{color:#6c3eb8;font-size:22px;margin-bottom:4px;}';
+    html+='.sub{font-size:12px;color:#888;margin-bottom:16px;}';
+    html+='.summary{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;}';
+    html+='.sbox{background:#f3eeff;border-radius:8px;padding:10px 16px;text-align:center;min-width:80px;}';
+    html+='.sbox .val{font-size:20px;font-weight:900;color:#6c3eb8;}';
+    html+='.sbox .lbl{font-size:10px;color:#9d8ec4;}';
+    html+='table{width:100%;border-collapse:collapse;font-size:12px;}';
+    html+='th{background:#6c3eb8;color:#fff;padding:8px;text-align:right;}';
+    html+='td{padding:7px 8px;border-bottom:1px solid #eee;}';
+    html+='tr:nth-child(even) td{background:#f9f6ff;}';
+    html+='.paid{color:#16a34a;font-weight:700;}';
+    html+='.unpaid{color:#dc2626;font-weight:700;}';
+    html+='.total-row td{background:#6c3eb8!important;color:#fff;font-weight:900;}';
+    html+='@media print{body{margin:0;}button{display:none;}}';
+    html+='</style></head><body>';
+    html+='<button onclick="window.print()" style="background:#6c3eb8;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:14px;cursor:pointer;margin-bottom:16px;">🖨 הדפס</button>';
+    html+='<h1>🧾 דוח חשבוניות מירב</h1>';
+    html+='<div class="sub">תקופה: '+(f||"הכל")+' עד '+(t||"הכל")+' | הופק: '+new Date().toLocaleDateString("he-IL")+'</div>';
+    html+='<div class="summary">';
+    html+='<div class="sbox"><div class="val">'+invs.length+'</div><div class="lbl">חשבוניות</div></div>';
+    html+='<div class="sbox"><div class="val" style="color:#d97706;">₪'+fmtAmt(totalAmt)+'</div><div class="lbl">סה"כ</div></div>';
+    html+='<div class="sbox"><div class="val" style="color:#16a34a;">'+totalPaid+'</div><div class="lbl">שולמו</div></div>';
+    html+='<div class="sbox"><div class="val" style="color:#dc2626;">'+(invs.length-totalPaid)+'</div><div class="lbl">לא שולמו</div></div>';
+    html+='</div>';
+    html+='<table><tr><th>#</th><th>מס׳</th><th>ספק</th><th>תאריך</th><th>ספרות</th><th>סכום ₪</th><th>תשלום</th><th>סטטוס</th></tr>';
+    invs.forEach(function(inv,i){
+      var isPaid=inv.paid===true||inv.paid==="true"||(inv.payment&&inv.payment!=="טרם שולם");
+      var payStr=inv.payment||"טרם שולם";
+      html+='<tr>';
+      html+='<td>'+(i+1)+'</td>';
+      html+='<td style="color:#6c3eb8;font-weight:700;">'+(inv.invNum?"#"+inv.invNum:"—")+'</td>';
+      html+='<td style="font-weight:700;">'+esc(inv.supplier)+'</td>';
+      html+='<td>'+fmtDate(inv.date)+'</td>';
+      html+='<td style="font-family:monospace;letter-spacing:2px;">'+esc(inv.digits)+'</td>';
+      html+='<td style="font-weight:700;">₪'+fmtAmt(inv.amtTotal||0)+'</td>';
+      html+='<td>'+esc(payStr)+'</td>';
+      html+='<td class="'+(isPaid?"paid":"unpaid")+'">'+(isPaid?"✅ שולם":"❌ לא שולם")+'</td>';
+      html+='</tr>';
+    });
+    html+='<tr class="total-row"><td colspan="5">סה"כ</td><td>₪'+fmtAmt(totalAmt)+'</td><td></td><td>'+totalPaid+'/'+invs.length+'</td></tr>';
+    html+='</table></body></html>';
+    var w=window.open("","_blank");
+    if(w){w.document.write(html);w.document.close();}
+    else{toast("אפשר פופ-אפ בדפדפן","warn");}
+  },function(){toast("שגיאת חיבור","err");});
+}
+function sendPDFReport(){
+  var em=document.getElementById("emailInp").value.trim();
+  if(!em){toast("יש להזין מייל","warn");return;}
+  var sendSups=getSendSups();
+  var supParam=sendSups.indexOf("all")!==-1?"all":sendSups.join(",");
+  var f=document.getElementById("sFrom").value;
+  var t=document.getElementById("sTo").value;
+  var res=document.getElementById("eRes");
+  res.className="sres show";res.textContent="⏳ מייצר PDF... עשוי לקחת כ-30 שניות";
+  var btn=document.querySelector("#page-send .bpurple");
+  if(btn){btn.textContent="⏳ מייצר...";btn.disabled=true;}
+  apiPost({action:"sendPDF",email:em,supplier:supParam,dateFrom:f,dateTo:t},
+    function(d){
+      if(btn){btn.textContent='📎 שלח PDF מצורף (לרו"ח)';btn.disabled=false;}
+      if(d.success){res.className="sres show";res.textContent="✅ "+d.message;toast("✅ PDF נשלח!","ok");}
+      else{res.className="sres show err";res.textContent="❌ "+(d.error||"שגיאה");}
+    },
+    function(){
+      if(btn){btn.textContent='📎 שלח PDF מצורף (לרו"ח)';btn.disabled=false;}
+      res.className="sres show err";res.textContent="❌ שגיאת חיבור";
+    });
+}
+
+/* ============================================================
+   תשלום מרובה לספק
+   ============================================================ */
+var paySelInvs = {};   // rowId → invoice object
+var bulkPayMode = "cash";
+var bulkSupplier = "";
+
+function showTab(n){
+  document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active");});
+  document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active");});
+  document.getElementById("page-"+n).classList.add("active");
+  document.getElementById("tab-"+n).classList.add("active");
+  if(n==="history") loadHist();
+  if(n==="reports") initReports();
+  if(n==="pay")     initPayTab();
+}
+
+function initPayTab(){
+  paySelInvs={};bulkSupplier="";
+  document.getElementById("payInvList").innerHTML="";
+  document.getElementById("payMethodCard").style.display="none";
+  document.getElementById("payTotalBar").style.display="none";
+  document.getElementById("paySelectAll").style.display="none";
+  document.getElementById("paySupLabel").textContent="— בחר ספק —";
+  updatePayTotals();
+}
+
+/* חיפוש ספק בטאב תשלום */
+function togglePaySupSearch(){
+  var drop=document.getElementById("paySupSearchDrop");
+  var btn=document.getElementById("paySupSearchBtn");
+  var isOpen=drop.classList.contains("open");
+  document.querySelectorAll(".sup-search-drop.open").forEach(function(d){d.classList.remove("open");});
+  document.querySelectorAll(".sup-search-btn.active").forEach(function(b){b.classList.remove("active");});
+  if(!isOpen){
+    drop.classList.add("open");btn.classList.add("active");
+    buildPaySupList("");
+    setTimeout(function(){document.getElementById("paySupSearchInp").focus();},100);
+  }
+}
+function buildPaySupList(q){
+  var list=document.getElementById("paySupDropList");list.innerHTML="";
+  var filtered=q?sups.filter(function(s){return s.indexOf(q)!==-1;}):sups;
+  filtered.forEach(function(s){
+    var div=document.createElement("div");div.className="sup-drop-item";
+    var cat=supCats[s]||"";
+    div.innerHTML='<span>'+esc(s)+'</span>'+(cat?'<span class="sup-cat-badge">'+esc(cat)+'</span>':"");
+    div.onclick=function(){selectPaySup(s);};
+    list.appendChild(div);
+  });
+}
+function filterPaySup(q){buildPaySupList(q);}
+function selectPaySup(s){
+  bulkSupplier=s;
+  document.getElementById("paySupLabel").textContent=s;
+  document.getElementById("paySupSearchDrop").classList.remove("open");
+  document.getElementById("paySupSearchBtn").classList.remove("active");
+  document.getElementById("paySupSearchInp").value="";
+  paySelInvs={};
+  loadPayInvoices(s);
+}
+
+/* טעינת חשבוניות לא שולמו של הספק */
+function loadPayInvoices(supplier){
+  var list=document.getElementById("payInvList");
+  list.innerHTML='<div class="iempty">⏳ טוען...</div>';
+  apiGet("action=getInvoices&supplier="+encodeURIComponent(supplier)+"&status=unpaid",function(d){
+    if(!d.success||!d.invoices||!d.invoices.length){
+      list.innerHTML='<div class="iempty">✅<br>אין חשבוניות פתוחות לספק זה</div>';
+      document.getElementById("payMethodCard").style.display="none";
+      document.getElementById("payTotalBar").style.display="none";
+      document.getElementById("paySelectAll").style.display="none";
+      return;
+    }
+    document.getElementById("paySelectAll").style.display="block";
+    document.getElementById("payTotalBar").style.display="flex";
+    renderPayInvList(d.invoices);
+  },function(){list.innerHTML='<div class="iempty">שגיאת חיבור</div>';});
+}
+
+function renderPayInvList(invs){
+  var list=document.getElementById("payInvList");list.innerHTML="";
+  invs.forEach(function(inv){
+    var div=document.createElement("div");
+    div.className="pay-inv-item";div.id="pi-"+inv.rowId;
+    var amt=parseFloat(inv.amtTotal)||0;
+    div.innerHTML=
+      '<div class="pi-check" id="pck-'+esc(inv.rowId)+'">☐</div>'+
+      '<div class="pi-info">'+
+        '<div class="pi-sup">'+esc(inv.supplier)+(inv.invNum?' <span class="ibadge num">#'+inv.invNum+'</span>':'')+'</div>'+
+        '<div class="pi-details">'+fmtDate(inv.date)+' | <span style="font-family:monospace;">'+esc(inv.digits)+'</span>'+
+          (amt?'<span class="pi-amt"> | ₪'+fmtAmt(amt)+'</span>':'')+'</div>'+
+      '</div>';
+    div.onclick=function(){togglePayInv(inv);};
+    list.appendChild(div);
+  });
+}
+
+function togglePayInv(inv){
+  var id=inv.rowId;
+  var ck=document.getElementById("pck-"+id);
+  var item=document.getElementById("pi-"+id);
+  if(paySelInvs[id]){
+    delete paySelInvs[id];
+    if(ck)ck.textContent="☐";
+    if(item)item.classList.remove("selected");
+  } else {
+    paySelInvs[id]=inv;
+    if(ck)ck.textContent="✅";
+    if(item)item.classList.add("selected");
+  }
+  updatePayTotals();
+}
+
+function toggleSelectAll(){
+  var items=document.querySelectorAll(".pay-inv-item");
+  var allSel=Object.keys(paySelInvs).length===items.length&&items.length>0;
+  items.forEach(function(item){
+    var id=item.id.replace("pi-","");
+    // מצא את ה-invoice מתוך ה-DOM
+    var ck=document.getElementById("pck-"+id);
+    if(allSel){
+      delete paySelInvs[id];
+      if(ck)ck.textContent="☐";
+      item.classList.remove("selected");
+    } else {
+      // שחזר מה-DOM
+      var supEl=item.querySelector(".pi-sup");
+      var detEl=item.querySelector(".pi-details");
+      var amtEl=item.querySelector(".pi-amt");
+      var amt=amtEl?parseFloat((amtEl.textContent||"").replace(/[₪,]/g,""))||0:0;
+      paySelInvs[id]={rowId:id,amtTotal:String(amt)};
+      if(ck)ck.textContent="✅";
+      item.classList.add("selected");
+    }
+  });
+  document.getElementById("selAllLabel").textContent=allSel?"✅ בחר הכל":"☐ בטל הכל";
+  updatePayTotals();
+}
+
+function updatePayTotals(){
+  var keys=Object.keys(paySelInvs);
+  var total=keys.reduce(function(s,k){return s+(parseFloat(paySelInvs[k].amtTotal)||0);},0);
+  document.getElementById("paySelCount").textContent=keys.length+" חשבוניות";
+  document.getElementById("paySelTotal").textContent="₪"+fmtAmt(total);
+  // הצג כרטיס תשלום רק אם נבחרו חשבוניות
+  document.getElementById("payMethodCard").style.display=keys.length>0?"block":"none";
+  // מלא סכום אוטומטי
+  if(keys.length>0){
+    var t=total.toFixed(2);
+    ["bCashAmt","bCheckAmt","bBankAmt","bCreditAmt"].forEach(function(id){
+      var el=document.getElementById(id);if(el&&!el.value)el.value=t;
+    });
+  }
+}
+
+/* אופן תשלום */
+function setBulkPay(m){
+  bulkPayMode=m;
+  ["cash","check","bank","credit"].forEach(function(k){
+    document.getElementById("bpo-"+k).classList.toggle("active",k===m);
+    document.getElementById("bpf-"+k).classList.toggle("open",k===m);
+  });
+}
+
+/* אישור תשלום */
+function confirmBulkPayment(){
+  var keys=Object.keys(paySelInvs);
+  if(!keys.length){toast("יש לבחור חשבוניות","warn");return;}
+  var payStr="";
+  var payAmt="";
+  var checkNum="";var checkDate="";var bankRef="";var creditLast4="";
+  if(bulkPayMode==="cash"){
+    payAmt=document.getElementById("bCashAmt").value;
+    payStr="💵 מזומן ₪"+payAmt;
+  } else if(bulkPayMode==="check"){
+    checkNum=document.getElementById("bCheckNum").value;
+    payAmt=document.getElementById("bCheckAmt").value;
+    checkDate=document.getElementById("bCheckDate").value;
+    payStr="📄 צ'ק #"+checkNum+" ₪"+payAmt+(checkDate?" ("+checkDate+")":"");
+  } else if(bulkPayMode==="bank"){
+    bankRef=document.getElementById("bBankRef").value;
+    payAmt=document.getElementById("bBankAmt").value;
+    payStr="🏦 העברה #"+bankRef+" ₪"+payAmt;
+  } else if(bulkPayMode==="credit"){
+    creditLast4=document.getElementById("bCreditLast4").value;
+    payAmt=document.getElementById("bCreditAmt").value;
+    payStr="💳 אשראי *"+creditLast4+" ₪"+payAmt;
+  }
+  var btn=document.querySelector("#payMethodCard .bsub");
+  btn.classList.add("loading");btn.disabled=true;
+  var res=document.getElementById("bulkPayRes");
+  res.className="sres show";res.textContent="⏳ מעדכן "+keys.length+" חשבוניות...";
+  // שלח לכל חשבונית
+  var done=0,errors=0;
+  keys.forEach(function(rowId){
+    apiPost({
+      action:"updatePayment",rowId:rowId,
+      payment:bulkPayMode,payStr:payStr,
+      payAmount:payAmt,checkNum:checkNum,
+      checkDate:checkDate,bankRef:bankRef,
+      creditLast4:creditLast4
+    },function(r){
+      done++;
+      if(!r.success)errors++;
+      if(done===keys.length){
+        btn.classList.remove("loading");btn.disabled=false;
+        if(errors===0){
+          res.className="sres show";
+          res.textContent="✅ "+keys.length+" חשבוניות עודכנו כ-'שולם' | "+payStr;
+          toast("✅ "+keys.length+" חשבוניות שולמו!","ok");
+          // רענן
+          paySelInvs={};
+          setTimeout(function(){loadPayInvoices(bulkSupplier);},800);
+        } else {
+          res.className="sres show err";
+          res.textContent="⚠️ "+errors+" שגיאות מתוך "+keys.length;
+        }
+      }
+    },function(){
+      done++;errors++;
+      if(done===keys.length){btn.classList.remove("loading");btn.disabled=false;toast("שגיאת חיבור","err");}
+    });
+  });
+}
+
 function updUrl(){
   var v=document.getElementById("setUrl").value.trim();
-  if(!v.includes("script.google.com")||!v.includes("/exec")){ toast("URL חייב להסתיים ב /exec","warn"); return; }
-  SCRIPT_URL=v; localStorage.setItem(UK,v); toast("✅ עודכן","ok"); loadSups();
+  if(!v.includes("script.google.com")||!v.includes("/exec")){toast("URL חייב להסתיים ב /exec","warn");return;}
+  SCRIPT_URL=v;localStorage.setItem(UK,v);toast("✅ עודכן","ok");loadSups();
 }
 function testConn(){
   setSt("","בודק...");
-  apiGet("action=getSuppliers", function(d){
-    if(d.success){ setSt("ok","מחובר ✓"); toast("✅ חיבור תקין","ok"); }
-    else         { setSt("err","שגיאה"); toast("שגיאה","err"); }
-  }, function(){ setSt("err","לא מחובר"); toast("לא מחובר","err"); });
+  apiGet("action=getSuppliers",function(d){
+    if(d.success){setSt("ok","מחובר ✓");toast("✅ חיבור תקין","ok");}
+    else{setSt("err","שגיאה");toast("שגיאה","err");}
+  },function(){setSt("err","לא מחובר");toast("לא מחובר","err");});
 }
-function clrLocal(){ if(!confirm("למחוק ספקים מקומיים?")) return; sups=[]; localStorage.removeItem(SK); rndSups(); toast("✅ נוקה","ok"); }
+function clrLocal(){if(!confirm("למחוק ספקים מקומיים?"))return;sups=[];localStorage.removeItem(SK);rndSups();toast("✅ נוקה","ok");}
+function rndRenSups(){
+  var el=document.getElementById("renOld");if(!el)return;
+  el.innerHTML='<option value="">בחר ספק</option>';
+  sups.forEach(function(s){var o=document.createElement("option");o.value=s;o.textContent=s;el.appendChild(o);});
+}
+function renameSupplier(){
+  var old=document.getElementById("renOld").value;
+  var nw=document.getElementById("renNew").value.trim();
+  var cat=document.getElementById("renCat").value;
+  if(!old){toast("בחר ספק","warn");return;}
+  if(!nw&&!cat){toast("הזן שם חדש או קטגוריה","warn");return;}
+  var finalName=nw||old;
+  apiPost({action:"renameSupplier",oldName:old,newName:finalName,category:cat},function(r){
+    if(r.success){
+      if(nw&&nw!==old){
+        var i=sups.indexOf(old);if(i!==-1){sups.splice(i,1,finalName);sups.sort();}
+        if(supCats[old]){supCats[finalName]=supCats[old];delete supCats[old];}
+      }
+      if(cat) supCats[finalName]=cat;
+      localStorage.setItem(SK,JSON.stringify(sups));
+      localStorage.setItem(CK,JSON.stringify(supCats));
+      rndSups();
+      document.getElementById("renNew").value="";
+      document.getElementById("renCat").value="";
+      document.getElementById("renCurCat").textContent="";
+      toast("✅ ספק עודכן","ok");
+    }else toast(r.error||"שגיאה","err");
+  },function(){toast("שגיאת חיבור","err");});
+}
 
 /* ---- Toast ---- */
+function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/'/g,"&#39;");}
 function toast(msg,type){
-  var t=document.getElementById("toast"); t.textContent=msg; t.className="toast "+(type||"")+" show";
-  clearTimeout(ttm); ttm=setTimeout(function(){ t.classList.remove("show"); },3200);
+  var t=document.getElementById("toast");t.textContent=msg;t.className="toast "+(type||"")+" show";
+  clearTimeout(ttm);ttm=setTimeout(function(){t.classList.remove("show");},3200);
 }
 </script>
 </body>
